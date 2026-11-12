@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>솜니웨이브 — AI 수면 분석 & 수면 음악</title>
+<meta name="description" content="솜니웨이브: AI 수면 분석, 프리미엄 수면 음악, 맞춤 수면 개선 리포트를 한 앱에서. 오늘 밤부터 더 깊이 잠들어보세요.">
+<link rel="icon" href="asset/image/ic_launcher-playstore.png">
+<style>
+    @font-face {
+        font-family: 'Pretendard';
+        src: url('asset/font/pretendard_regular.ttf') format('truetype');
+        font-weight: 400;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'Pretendard';
+        src: url('asset/font/pretendard_bold.ttf') format('truetype');
+        font-weight: 700;
+        font-display: swap;
+    }
+
+    :root {
+        --bg: #0B0C1E;
+        --surface: #181A3A;
+        --surface-elevated: #232552;
+        --primary: #9D96FF;
+        --secondary: #FFEAA7;
+        --text: #F5F4FF;
+        --text-secondary: #B4B0D9;
+        --border: #4A4870;
+        --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Pretendard', -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+        line-height: 1.6;
+        word-break: keep-all;
+        -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    section { padding: 88px 0; }
+
+    /* Header */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(11, 12, 30, 0.85);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+    }
+    header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+    }
+    .brand { display: flex; align-items: center; gap: 8px; }
+    .brand img { height: 28px; width: auto; }
+    .brand span { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; }
+
+    nav.main-nav { display: flex; align-items: center; gap: 32px; }
+    nav.main-nav a.nav-link {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        font-weight: 400;
+        transition: color 0.15s;
+    }
+    nav.main-nav a.nav-link:hover { color: var(--text); }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 22px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: none;
+        white-space: nowrap;
+        min-height: 44px;
+        transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary), #6f8cff);
+        color: #0B0C1E;
+        box-shadow: 0 8px 24px rgba(157, 150, 255, 0.35);
+    }
+    .btn-primary:hover { box-shadow: 0 10px 28px rgba(157, 150, 255, 0.5); }
+    .btn-ghost {
+        background: var(--surface);
+        color: var(--text);
+        border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--primary); }
+    .btn-small { padding: 9px 16px; font-size: 0.85rem; }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+    }
+    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+
+    /* Hero */
+    .hero {
+        position: relative;
+        overflow: hidden;
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+    .hero .glow {
+        position: absolute;
+        top: -140px;
+        right: -120px;
+        width: 480px;
+        height: 480px;
+        background: radial-gradient(circle, rgba(157,150,255,0.35), transparent 70%);
+        filter: blur(10px);
+        pointer-events: none;
+    }
+    .hero-inner {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+        position: relative;
+    }
+    .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--secondary);
+        font-size: 0.82rem;
+        font-weight: 700;
+        padding: 6px 14px;
+        border-radius: 999px;
+        margin-bottom: 20px;
+    }
+    .hero h1 {
+        font-size: clamp(2rem, 4vw, 2.9rem);
+        line-height: 1.35;
+        letter-spacing: -0.02em;
+        margin: 0 0 18px;
+    }
+    .hero h1 .accent {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .hero p.sub {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        margin: 0 0 32px;
+        max-width: 480px;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-trust { display: flex; gap: 22px; color: var(--text-secondary); font-size: 0.85rem; flex-wrap: wrap; }
+    .hero-trust b { color: var(--text); font-weight: 700; }
+
+    .hero-art {
+        position: relative;
+        border-radius: 28px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        aspect-ratio: 4/5;
+    }
+    .hero-art img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.92;
+    }
+    .hero-art::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(11,12,30,0) 40%, rgba(11,12,30,0.85) 100%);
+    }
+    .hero-art-caption {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 18px;
+        z-index: 2;
+        font-size: 0.88rem;
+        color: var(--text);
+        font-weight: 700;
+    }
+    .hero-art-caption span { display: block; font-weight: 400; color: var(--text-secondary); font-size: 0.8rem; margin-top: 4px; }
+
+    /* Section heading */
+    .section-head { text-align: center; max-width: 560px; margin: 0 auto 56px; }
+    .section-head .kicker {
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: block;
+    }
+    .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0 0 12px; letter-spacing: -0.02em; }
+    .section-head p { color: var(--text-secondary); margin: 0; font-size: 1rem; }
+
+    /* Features */
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+    .feature-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 32px 26px;
+        transition: transform 0.2s, border-color 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+    .feature-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        background: var(--surface-elevated);
+    }
+    .feature-icon svg { width: 26px; height: 26px; }
+    .feature-card h3 { font-size: 1.15rem; margin: 0 0 10px; letter-spacing: -0.01em; }
+    .feature-card p { color: var(--text-secondary); margin: 0; font-size: 0.93rem; }
+
+    /* Pricing */
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        max-width: 760px;
+        margin: 0 auto;
+    }
+    .price-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 36px 30px;
+        position: relative;
+    }
+    .price-card.highlight {
+        border-color: var(--primary);
+        background: linear-gradient(160deg, var(--surface-elevated), var(--surface));
+        box-shadow: 0 16px 40px rgba(157,150,255,0.18);
+    }
+    .badge {
+        position: absolute;
+        top: -14px;
+        right: 24px;
+        background: var(--secondary);
+        color: #0B0C1E;
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 5px 12px;
+        border-radius: 999px;
+    }
+    .price-card .plan-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 14px; color: var(--text-secondary); }
+    .price-card.highlight .plan-name { color: var(--secondary); }
+    .price-card .price { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .price-card .price small { font-size: 1rem; font-weight: 400; color: var(--text-secondary); }
+    .price-card .price-note { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 24px; }
+    .price-card ul { list-style: none; padding: 0; margin: 0 0 28px; display: flex; flex-direction: column; gap: 10px; }
+    .price-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: var(--text); }
+    .price-card li svg { flex-shrink: 0; margin-top: 2px; width: 16px; height: 16px; }
+    .price-card .btn { width: 100%; }
+    .pricing-footnote { text-align: center; color: var(--text-secondary); font-size: 0.82rem; margin-top: 24px; }
+
+    /* CTA band */
+    .cta-band {
+        background: linear-gradient(135deg, var(--surface-elevated), var(--surface));
+        border-radius: 28px;
+        padding: 56px 40px;
+        text-align: center;
+        border: 1px solid var(--border);
+    }
+    .cta-band h2 { margin: 0 0 12px; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; }
+    .cta-band p { color: var(--text-secondary); margin: 0 0 28px; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 48px 0 32px; }
+    .footer-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 8px; }
+    .footer-brand img { height: 22px; }
+    .footer-brand span { font-weight: 700; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links button {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 0;
+        font-family: inherit;
+    }
+    .footer-links button:hover { color: var(--text); }
+    .footer-meta {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        color: var(--text-secondary);
+        font-size: 0.82rem;
+        border-top: 1px solid var(--border);
+        padding-top: 20px;
+    }
+    .footer-meta small { color: #7a7799; }
+
+    /* Modal */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 5, 16, 0.72);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s;
+    }
+    .modal-overlay.open { opacity: 1; visibility: visible; }
+    .modal-box {
+        background: #fff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 760px;
+        height: min(82vh, 860px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    }
+    .modal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 18px;
+        background: var(--surface);
+        color: var(--text);
+    }
+    .modal-head h3 { margin: 0; font-size: 1rem; }
+    .modal-head button {
+        background: var(--surface-elevated);
+        border: none;
+        color: var(--text);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1rem;
+        line-height: 1;
+    }
+    .modal-box iframe { flex: 1; width: 100%; border: none; background: #fff; }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+        .hero-inner { grid-template-columns: 1fr; }
+        .hero-art { max-width: 360px; margin: 0 auto; }
+        .feature-grid { grid-template-columns: 1fr; }
+        .pricing-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+        section { padding: 56px 0; }
+        nav.main-nav { position: fixed; top: 72px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; align-items: flex-start; padding: 16px 24px 20px; gap: 16px; transform: translateY(-110%); transition: transform 0.2s; }
+        nav.main-nav.open { transform: translateY(0); }
+        .hamburger { display: flex; }
+        header .wrap { flex-wrap: wrap; }
+        .hero-ctas .btn { flex: 1; }
+        .footer-top { flex-direction: column; }
+        .cta-band { padding: 40px 22px; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="wrap">
+        <a href="#top" class="brand">
+            <img src="asset/icon/app_logo.svg" alt="솜니웨이브">
+        </a>
+        <nav class="main-nav" id="mainNav">
+            <a class="nav-link" href="#features">핵심 기능</a>
+            <a class="nav-link" href="#pricing">요금제</a>
+        </nav>
+        <a class="btn btn-primary btn-small nav-download" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">다운로드</a>
+        <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<main id="top">
+    <section class="hero">
+        <div class="glow"></div>
+        <div class="wrap hero-inner">
+            <div>
+                <span class="eyebrow">🌙 AI 수면 분석 · 수면 음악 · 맞춤 리포트</span>
+                <h1>오늘 밤은 솜니웨이브와 함께<br><span class="accent">더 깊이 잠들어요</span></h1>
+                <p class="sub">당신의 수면 패턴을 분석해 드립니다. AI 수면 분석, 프리미엄 수면 음악, 맞춤 개선 리포트까지 — 솜니웨이브 하나로 충분해요.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 3l11 9-11 9V3z" fill="currentColor"/><path d="M14 12l4.5-3.6L21 10l-7 2z" fill="currentColor" opacity=".6"/><path d="M14 12l4.5 3.6L21 14l-7-2z" fill="currentColor" opacity=".6"/></svg>
+                        Google Play에서 다운로드
+                    </a>
+                    <a class="btn btn-ghost" href="#pricing">요금제 보기</a>
+                </div>
+                <div class="hero-trust">
+                    <div><b>AI</b> 수면 패턴 분석</div>
+                    <div><b>7일</b> 무료체험</div>
+                    <div><b>언제든</b> 구독 해지</div>
+                </div>
+            </div>
+            <div class="hero-art">
+                <img src="asset/image/bg_onboarding.webp" alt="솜니웨이브 수면 측정 일러스트">
+                <div class="hero-art-caption">
+                    수면 시작 버튼 하나로 측정 끝
+                    <span>마이크·센서로 수면 단계를 자동 분석해요</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="kicker">Core Features</span>
+                <h2>핵심 기능 3가지</h2>
+                <p>복잡한 설정 없이, 자는 동안 솜니웨이브가 알아서 기록하고 분석해요.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M21 12.5A8.5 8.5 0 1 1 11.5 3a7 7 0 0 0 9.5 9.5z" fill="#9D96FF"/></svg>
+                    </div>
+                    <h3>AI 수면 분석</h3>
+                    <p>마이크·가속도·자이로 센서와 Health Connect 연동 심박 데이터로 수면 단계와 패턴을 자동으로 측정하고 분석해요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V5l12-2v13" stroke="#9D96FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="#9D96FF" stroke-width="1.8"/><circle cx="18" cy="16" r="3" stroke="#9D96FF" stroke-width="1.8"/></svg>
+                    </div>
+                    <h3>무제한 프리미엄 수면 음악</h3>
+                    <p>빗소리·파도·피아노 등 자연음과 사운드 믹스를 취향대로 조합해, 깊은 잠에 들 수 있도록 도와드려요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V10M11 19V5M18 19v-7" stroke="#9D96FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>AI 수면 개선 조언 &amp; 리포트</h3>
+                    <p>어제와 오늘, 최근 수면 데이터를 비교하고 주간·월간 리포트와 AI 맞춤 개선 조언까지 받아보세요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="kicker">Pricing</span>
+                <h2>솜니웨이브 프리미엄</h2>
+                <p>7일 무료체험으로 먼저 경험해보세요. 구독은 앱 안에서 언제든 취소할 수 있어요.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="plan-name">월간 플랜</div>
+                    <div class="price">7,900원<small> / 월</small></div>
+                    <div class="price-note">매달 자동 결제</div>
+                    <ul>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#9D96FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 무제한 프리미엄 수면 음악</li>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#9D96FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> AI 수면 개선 조언</li>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#9D96FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 최근 수면과 비교</li>
+                    </ul>
+                    <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">다운로드하고 시작하기</a>
+                </div>
+                <div class="price-card highlight">
+                    <span class="badge">7일 무료체험</span>
+                    <div class="plan-name">연간 플랜</div>
+                    <div class="price">39,000원<small> / 년</small></div>
+                    <div class="price-note">월 3,250원 꼴 · 가장 많이 선택하는 플랜</div>
+                    <ul>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 무제한 프리미엄 수면 음악</li>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> AI 수면 개선 조언</li>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 최근 수면과 비교</li>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 7일 무료체험, 언제든 해지 가능</li>
+                    </ul>
+                    <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">7일 무료체험 시작하기</a>
+                </div>
+            </div>
+            <p class="pricing-footnote">가격 및 혜택은 Google Play 결제 화면에서 최종 확인되며, 운영 정책에 따라 변경될 수 있습니다.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="cta-band">
+                <h2>오늘 밤, 솜니웨이브와 함께 시작해보세요</h2>
+                <p>지금 다운로드하고 7일 무료체험으로 AI 수면 분석을 경험해보세요.</p>
+                <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">Google Play에서 다운로드</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="asset/icon/app_logo.svg" alt="솜니웨이브">
+            </div>
+            <div class="footer-links">
+                <button type="button" data-modal="terms-modal">이용약관</button>
+                <button type="button" data-modal="privacy-modal">개인정보처리방침</button>
+                <a href="mailto:soundsleeper.help@gmail.com">문의하기</a>
+            </div>
+        </div>
+        <div class="footer-meta">
+            <span>&copy; 2026 SoundSleeper. All rights reserved.</span>
+            <small>문의: soundsleeper.help@gmail.com (변경 가능)</small>
+        </div>
+    </div>
+</footer>
+
+<div class="modal-overlay" id="terms-modal">
+    <div class="modal-box">
+        <div class="modal-head">
+            <h3>이용약관</h3>
+            <button type="button" data-close="terms-modal" aria-label="닫기">✕</button>
+        </div>
+        <iframe src="terms/index.html" title="솜니웨이브 이용약관" loading="lazy"></iframe>
+    </div>
+</div>
+
+<div class="modal-overlay" id="privacy-modal">
+    <div class="modal-box">
+        <div class="modal-head">
+            <h3>개인정보처리방침</h3>
+            <button type="button" data-close="privacy-modal" aria-label="닫기">✕</button>
+        </div>
+        <iframe src="privacy/index.html" title="솜니웨이브 개인정보처리방침" loading="lazy"></iframe>
+    </div>
+</div>
+
+<script>
+    // 모바일 햄버거 메뉴
+    const hamburger = document.getElementById('hamburger');
+    const mainNav = document.getElementById('mainNav');
+    hamburger.addEventListener('click', () => mainNav.classList.toggle('open'));
+    mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
+
+    // 모달 열기/닫기
+    function openModal(id) {
+        document.getElementById(id).classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+        document.getElementById(id).classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    document.querySelectorAll('[data-modal]').forEach(btn => {
+        btn.addEventListener('click', () => openModal(btn.getAttribute('data-modal')));
+    });
+    document.querySelectorAll('[data-close]').forEach(btn => {
+        btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close')));
+    });
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeModal(overlay.id);
+        });
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay.open').forEach(o => closeModal(o.id));
+        }
+    });
+</script>
+
+</body>
+</html>
