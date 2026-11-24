@@ -3,8 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>솜니웨이브 — AI 수면 분석 & 수면 음악</title>
-<meta name="description" content="솜니웨이브: AI 수면 분석, 프리미엄 수면 음악, 맞춤 수면 개선 리포트를 한 앱에서. 오늘 밤부터 더 깊이 잠들어보세요.">
+<title>솜니웨이브 (SomniWave) — AI 수면 분석 & 프리미엄 수면 음악</title>
+<meta name="description" content="솜니웨이브: AI 수면 패턴 분석, 프리미엄 수면 음악, 맞춤 수면 개선 리포트를 한 앱에서 경험하세요. 오늘 밤부터 더 깊이 잠들 수 있습니다.">
+<link rel="canonical" href="https://alar.my">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://alar.my">
+<meta property="og:title" content="솜니웨이브 — AI 수면 분석 & 프리미엄 수면 음악">
+<meta property="og:description" content="AI 수면 분석, 프리미엄 수면 음악, 맞춤 수면 개선 리포트까지 솜니웨이브와 함께 시작하세요.">
+<meta property="og:image" content="https://alar.my/asset/image/ic_launcher-playstore.png">
 <link rel="icon" href="asset/image/ic_launcher-playstore.png">
 <style>
     @font-face {
@@ -22,13 +28,14 @@
 
     :root {
         --bg: #0B0C1E;
-        --surface: #181A3A;
-        --surface-elevated: #232552;
+        --surface: #151736;
+        --surface-elevated: #20224D;
         --primary: #9D96FF;
+        --primary-glow: rgba(157, 150, 255, 0.4);
         --secondary: #FFEAA7;
         --text: #F5F4FF;
         --text-secondary: #B4B0D9;
-        --border: #4A4870;
+        --border: #3A3860;
         --max-width: 1120px;
     }
 
@@ -39,40 +46,40 @@
         background: var(--bg);
         color: var(--text);
         font-family: 'Pretendard', -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
-        line-height: 1.6;
+        line-height: 1.65;
         word-break: keep-all;
         -webkit-font-smoothing: antialiased;
     }
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
     .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-    section { padding: 88px 0; }
+    section { padding: 96px 0; position: relative; }
 
     /* Header */
     header {
         position: sticky;
         top: 0;
-        z-index: 40;
-        background: rgba(11, 12, 30, 0.85);
-        backdrop-filter: blur(10px);
+        z-index: 50;
+        background: rgba(11, 12, 30, 0.88);
+        backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
     }
     header .wrap {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 72px;
+        height: 76px;
     }
-    .brand { display: flex; align-items: center; gap: 8px; }
-    .brand img { height: 28px; width: auto; }
-    .brand span { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { height: 32px; width: auto; border-radius: 8px; }
+    .brand span { font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; }
 
-    nav.main-nav { display: flex; align-items: center; gap: 32px; }
+    nav.main-nav { display: flex; align-items: center; gap: 36px; }
     nav.main-nav a.nav-link {
         font-size: 0.95rem;
         color: var(--text-secondary);
-        font-weight: 400;
-        transition: color 0.15s;
+        font-weight: 500;
+        transition: color 0.2s;
     }
     nav.main-nav a.nav-link:hover { color: var(--text); }
 
@@ -81,63 +88,63 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        padding: 12px 22px;
+        padding: 12px 24px;
         border-radius: 999px;
         font-weight: 700;
         font-size: 0.95rem;
         cursor: pointer;
         border: none;
         white-space: nowrap;
-        min-height: 44px;
-        transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
+        min-height: 46px;
+        transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.2s ease;
     }
     .btn:active { transform: scale(0.97); }
     .btn-primary {
-        background: linear-gradient(135deg, var(--primary), #6f8cff);
+        background: linear-gradient(135deg, var(--primary), #748BFF);
         color: #0B0C1E;
-        box-shadow: 0 8px 24px rgba(157, 150, 255, 0.35);
+        box-shadow: 0 8px 24px var(--primary-glow);
     }
-    .btn-primary:hover { box-shadow: 0 10px 28px rgba(157, 150, 255, 0.5); }
+    .btn-primary:hover { box-shadow: 0 10px 32px rgba(157, 150, 255, 0.55); transform: translateY(-1px); }
     .btn-ghost {
         background: var(--surface);
         color: var(--text);
         border: 1px solid var(--border);
     }
-    .btn-ghost:hover { border-color: var(--primary); }
-    .btn-small { padding: 9px 16px; font-size: 0.85rem; }
+    .btn-ghost:hover { border-color: var(--primary); background: var(--surface-elevated); transform: translateY(-1px); }
+    .btn-small { padding: 9px 18px; font-size: 0.88rem; min-height: 38px; }
 
     .hamburger {
         display: none;
         flex-direction: column;
-        gap: 5px;
+        gap: 6px;
         background: none;
         border: none;
         cursor: pointer;
         padding: 8px;
     }
-    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.2s; }
 
     /* Hero */
     .hero {
         position: relative;
         overflow: hidden;
-        padding-top: 100px;
-        padding-bottom: 60px;
+        padding-top: 110px;
+        padding-bottom: 80px;
     }
     .hero .glow {
         position: absolute;
-        top: -140px;
-        right: -120px;
-        width: 480px;
-        height: 480px;
-        background: radial-gradient(circle, rgba(157,150,255,0.35), transparent 70%);
-        filter: blur(10px);
+        top: -100px;
+        right: -100px;
+        width: 520px;
+        height: 520px;
+        background: radial-gradient(circle, rgba(157,150,255,0.28), transparent 70%);
+        filter: blur(20px);
         pointer-events: none;
     }
     .hero-inner {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 48px;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 56px;
         align-items: center;
         position: relative;
     }
@@ -148,17 +155,18 @@
         background: var(--surface);
         border: 1px solid var(--border);
         color: var(--secondary);
-        font-size: 0.82rem;
+        font-size: 0.85rem;
         font-weight: 700;
-        padding: 6px 14px;
+        padding: 7px 16px;
         border-radius: 999px;
-        margin-bottom: 20px;
+        margin-bottom: 22px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     .hero h1 {
-        font-size: clamp(2rem, 4vw, 2.9rem);
-        line-height: 1.35;
-        letter-spacing: -0.02em;
-        margin: 0 0 18px;
+        font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+        line-height: 1.3;
+        letter-spacing: -0.025em;
+        margin: 0 0 20px;
     }
     .hero h1 .accent {
         background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -167,13 +175,14 @@
         color: transparent;
     }
     .hero p.sub {
-        font-size: 1.1rem;
+        font-size: 1.12rem;
         color: var(--text-secondary);
-        margin: 0 0 32px;
-        max-width: 480px;
+        margin: 0 0 36px;
+        max-width: 500px;
+        line-height: 1.7;
     }
-    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
-    .hero-trust { display: flex; gap: 22px; color: var(--text-secondary); font-size: 0.85rem; flex-wrap: wrap; }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+    .hero-trust { display: flex; gap: 24px; color: var(--text-secondary); font-size: 0.88rem; flex-wrap: wrap; }
     .hero-trust b { color: var(--text); font-weight: 700; }
 
     .hero-art {
@@ -183,225 +192,202 @@
         border: 1px solid var(--border);
         background: var(--surface);
         aspect-ratio: 4/5;
+        box-shadow: 0 24px 60px rgba(0,0,0,0.4);
     }
     .hero-art img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0.92;
+        opacity: 0.94;
     }
     .hero-art::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(11,12,30,0) 40%, rgba(11,12,30,0.85) 100%);
+        background: linear-gradient(180deg, rgba(11,12,30,0) 45%, rgba(11,12,30,0.9) 100%);
     }
     .hero-art-caption {
         position: absolute;
-        left: 20px;
-        right: 20px;
-        bottom: 18px;
+        left: 24px;
+        right: 24px;
+        bottom: 22px;
         z-index: 2;
-        font-size: 0.88rem;
+        font-size: 0.92rem;
         color: var(--text);
         font-weight: 700;
     }
-    .hero-art-caption span { display: block; font-weight: 400; color: var(--text-secondary); font-size: 0.8rem; margin-top: 4px; }
+    .hero-art-caption span { display: block; font-weight: 400; color: var(--text-secondary); font-size: 0.82rem; margin-top: 5px; }
 
     /* Section heading */
-    .section-head { text-align: center; max-width: 560px; margin: 0 auto 56px; }
+    .section-head { text-align: center; max-width: 600px; margin: 0 auto 64px; }
     .section-head .kicker {
         color: var(--primary);
         font-weight: 700;
         font-size: 0.85rem;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         display: block;
     }
-    .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0 0 12px; letter-spacing: -0.02em; }
-    .section-head p { color: var(--text-secondary); margin: 0; font-size: 1rem; }
+    .section-head h2 { font-size: clamp(1.8rem, 3.2vw, 2.3rem); margin: 0 0 14px; letter-spacing: -0.02em; }
+    .section-head p { color: var(--text-secondary); margin: 0; font-size: 1.05rem; }
 
     /* Features */
     .feature-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        gap: 28px;
     }
     .feature-card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 32px 26px;
-        transition: transform 0.2s, border-color 0.2s;
+        border-radius: 22px;
+        padding: 36px 30px;
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
-    .feature-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+    .feature-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--primary);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
     .feature-icon {
-        width: 52px;
-        height: 52px;
-        border-radius: 14px;
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 20px;
+        margin-bottom: 24px;
         background: var(--surface-elevated);
+        border: 1px solid rgba(157,150,255,0.2);
     }
-    .feature-icon svg { width: 26px; height: 26px; }
-    .feature-card h3 { font-size: 1.15rem; margin: 0 0 10px; letter-spacing: -0.01em; }
-    .feature-card p { color: var(--text-secondary); margin: 0; font-size: 0.93rem; }
+    .feature-icon svg { width: 28px; height: 28px; }
+    .feature-card h3 { font-size: 1.2rem; margin: 0 0 12px; letter-spacing: -0.01em; }
+    .feature-card p { color: var(--text-secondary); margin: 0; font-size: 0.96rem; line-height: 1.7; }
 
     /* Pricing */
     .pricing-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-        max-width: 760px;
+        gap: 28px;
+        max-width: 800px;
         margin: 0 auto;
     }
     .price-card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 22px;
-        padding: 36px 30px;
+        border-radius: 24px;
+        padding: 40px 34px;
         position: relative;
+        transition: transform 0.25s ease;
     }
+    .price-card:hover { transform: translateY(-4px); }
     .price-card.highlight {
         border-color: var(--primary);
         background: linear-gradient(160deg, var(--surface-elevated), var(--surface));
-        box-shadow: 0 16px 40px rgba(157,150,255,0.18);
+        box-shadow: 0 20px 48px rgba(157,150,255,0.2);
     }
     .badge {
         position: absolute;
-        top: -14px;
-        right: 24px;
+        top: -15px;
+        right: 28px;
         background: var(--secondary);
         color: #0B0C1E;
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         font-weight: 700;
-        padding: 5px 12px;
+        padding: 6px 14px;
         border-radius: 999px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-    .price-card .plan-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 14px; color: var(--text-secondary); }
+    .price-card .plan-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 16px; color: var(--text-secondary); }
     .price-card.highlight .plan-name { color: var(--secondary); }
-    .price-card .price { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .price-card .price small { font-size: 1rem; font-weight: 400; color: var(--text-secondary); }
-    .price-card .price-note { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 24px; }
-    .price-card ul { list-style: none; padding: 0; margin: 0 0 28px; display: flex; flex-direction: column; gap: 10px; }
-    .price-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: var(--text); }
-    .price-card li svg { flex-shrink: 0; margin-top: 2px; width: 16px; height: 16px; }
+    .price-card .price { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .price-card .price small { font-size: 1.05rem; font-weight: 400; color: var(--text-secondary); }
+    .price-card .price-note { color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 28px; }
+    .price-card ul { list-style: none; padding: 0; margin: 0 0 32px; display: flex; flex-direction: column; gap: 12px; }
+    .price-card li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.94rem; color: var(--text); }
+    .price-card li svg { flex-shrink: 0; margin-top: 3px; width: 18px; height: 18px; }
     .price-card .btn { width: 100%; }
-    .pricing-footnote { text-align: center; color: var(--text-secondary); font-size: 0.82rem; margin-top: 24px; }
+    .pricing-footnote { text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 28px; }
 
     /* CTA band */
     .cta-band {
         background: linear-gradient(135deg, var(--surface-elevated), var(--surface));
-        border-radius: 28px;
-        padding: 56px 40px;
+        border-radius: 32px;
+        padding: 64px 48px;
         text-align: center;
         border: 1px solid var(--border);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     }
-    .cta-band h2 { margin: 0 0 12px; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; }
-    .cta-band p { color: var(--text-secondary); margin: 0 0 28px; }
+    .cta-band h2 { margin: 0 0 14px; font-size: clamp(1.7rem, 3.2vw, 2.2rem); letter-spacing: -0.02em; }
+    .cta-band p { color: var(--text-secondary); margin: 0 0 32px; font-size: 1.05rem; }
 
     /* Footer */
-    footer { border-top: 1px solid var(--border); padding: 48px 0 32px; }
+    footer { border-top: 1px solid var(--border); padding: 56px 0 36px; background: rgba(7, 8, 20, 0.6); }
     .footer-top {
         display: flex;
         justify-content: space-between;
-        gap: 32px;
+        gap: 36px;
         flex-wrap: wrap;
-        margin-bottom: 28px;
+        margin-bottom: 32px;
     }
-    .footer-brand { display: flex; align-items: center; gap: 8px; }
-    .footer-brand img { height: 22px; }
-    .footer-brand span { font-weight: 700; }
-    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
-    .footer-links button {
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-brand img { height: 26px; border-radius: 6px; }
+    .footer-brand span { font-weight: 700; font-size: 1.05rem; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; align-items: center; }
+    .footer-links a {
         background: none;
         border: none;
         color: var(--text-secondary);
-        font-size: 0.9rem;
+        font-size: 0.92rem;
         cursor: pointer;
         padding: 0;
         font-family: inherit;
+        transition: color 0.15s;
     }
-    .footer-links button:hover { color: var(--text); }
+    .footer-links a:hover { color: var(--text); }
     .footer-meta {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 12px;
         color: var(--text-secondary);
-        font-size: 0.82rem;
+        font-size: 0.85rem;
         border-top: 1px solid var(--border);
-        padding-top: 20px;
+        padding-top: 24px;
     }
-    .footer-meta small { color: #7a7799; }
-
-    /* Modal */
-    .modal-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(5, 5, 16, 0.72);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-        z-index: 100;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.2s;
-    }
-    .modal-overlay.open { opacity: 1; visibility: visible; }
-    .modal-box {
-        background: #fff;
-        border-radius: 16px;
-        width: 100%;
-        max-width: 760px;
-        height: min(82vh, 860px);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-    }
-    .modal-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 18px;
-        background: var(--surface);
-        color: var(--text);
-    }
-    .modal-head h3 { margin: 0; font-size: 1rem; }
-    .modal-head button {
-        background: var(--surface-elevated);
-        border: none;
-        color: var(--text);
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 1rem;
-        line-height: 1;
-    }
-    .modal-box iframe { flex: 1; width: 100%; border: none; background: #fff; }
+    .footer-meta small { color: #8F8CAE; }
 
     /* Responsive */
-    @media (max-width: 860px) {
-        .hero-inner { grid-template-columns: 1fr; }
-        .hero-art { max-width: 360px; margin: 0 auto; }
-        .feature-grid { grid-template-columns: 1fr; }
-        .pricing-grid { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+        .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+        .hero-art { max-width: 380px; margin: 0 auto; width: 100%; }
+        .feature-grid { grid-template-columns: 1fr; gap: 20px; }
+        .pricing-grid { grid-template-columns: 1fr; gap: 20px; }
     }
     @media (max-width: 720px) {
-        section { padding: 56px 0; }
-        nav.main-nav { position: fixed; top: 72px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; align-items: flex-start; padding: 16px 24px 20px; gap: 16px; transform: translateY(-110%); transition: transform 0.2s; }
+        section { padding: 64px 0; }
+        nav.main-nav {
+            position: fixed;
+            top: 76px;
+            left: 0;
+            right: 0;
+            background: rgba(11, 12, 30, 0.98);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 24px;
+            gap: 20px;
+            transform: translateY(-120%);
+            transition: transform 0.25s ease;
+        }
         nav.main-nav.open { transform: translateY(0); }
         .hamburger { display: flex; }
         header .wrap { flex-wrap: wrap; }
-        .hero-ctas .btn { flex: 1; }
-        .footer-top { flex-direction: column; }
-        .cta-band { padding: 40px 22px; }
+        .hero-ctas { flex-direction: column; }
+        .hero-ctas .btn { width: 100%; }
+        .cta-band { padding: 48px 24px; }
     }
 </style>
 </head>
@@ -410,11 +396,13 @@
 <header>
     <div class="wrap">
         <a href="#top" class="brand">
-            <img src="asset/icon/app_logo.svg" alt="솜니웨이브">
+            <img src="asset/icon/app_logo.svg" alt="솜니웨이브 로고">
+            <span>솜니웨이브</span>
         </a>
         <nav class="main-nav" id="mainNav">
             <a class="nav-link" href="#features">핵심 기능</a>
             <a class="nav-link" href="#pricing">요금제</a>
+            <a class="nav-link" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">Google Play</a>
         </nav>
         <a class="btn btn-primary btn-small nav-download" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">다운로드</a>
         <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
@@ -430,7 +418,7 @@
             <div>
                 <span class="eyebrow">🌙 AI 수면 분석 · 수면 음악 · 맞춤 리포트</span>
                 <h1>오늘 밤은 솜니웨이브와 함께<br><span class="accent">더 깊이 잠들어요</span></h1>
-                <p class="sub">당신의 수면 패턴을 분석해 드립니다. AI 수면 분석, 프리미엄 수면 음악, 맞춤 개선 리포트까지 — 솜니웨이브 하나로 충분해요.</p>
+                <p class="sub">당신의 수면 패턴을 지능적으로 분석해 드립니다. AI 수면 진단, 프리미엄 자연음 및 사운드 믹스, 맞춤 수면 개선 조언까지 — 솜니웨이브 하나로 완벽한 수면을 경험하세요.</p>
                 <div class="hero-ctas">
                     <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 3l11 9-11 9V3z" fill="currentColor"/><path d="M14 12l4.5-3.6L21 10l-7 2z" fill="currentColor" opacity=".6"/><path d="M14 12l4.5 3.6L21 14l-7-2z" fill="currentColor" opacity=".6"/></svg>
@@ -440,15 +428,15 @@
                 </div>
                 <div class="hero-trust">
                     <div><b>AI</b> 수면 패턴 분석</div>
-                    <div><b>7일</b> 무료체험</div>
-                    <div><b>언제든</b> 구독 해지</div>
+                    <div><b>7일</b> 무료체험 제공</div>
+                    <div><b>언제든</b> 구독 해지 가능</div>
                 </div>
             </div>
             <div class="hero-art">
-                <img src="asset/image/bg_onboarding.webp" alt="솜니웨이브 수면 측정 일러스트">
+                <img src="asset/image/bg_onboarding.webp" alt="솜니웨이브 수면 측정 화면">
                 <div class="hero-art-caption">
                     수면 시작 버튼 하나로 측정 끝
-                    <span>마이크·센서로 수면 단계를 자동 분석해요</span>
+                    <span>센서와 마이크로 수면 단계를 자동으로 분석해요</span>
                 </div>
             </div>
         </div>
@@ -458,8 +446,8 @@
         <div class="wrap">
             <div class="section-head">
                 <span class="kicker">Core Features</span>
-                <h2>핵심 기능 3가지</h2>
-                <p>복잡한 설정 없이, 자는 동안 솜니웨이브가 알아서 기록하고 분석해요.</p>
+                <h2>솜니웨이브의 핵심 기능</h2>
+                <p>복잡한 설정 없이 자는 동안 솜니웨이브가 알아서 기록하고 분석합니다.</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card">
@@ -467,21 +455,21 @@
                         <svg viewBox="0 0 24 24" fill="none"><path d="M21 12.5A8.5 8.5 0 1 1 11.5 3a7 7 0 0 0 9.5 9.5z" fill="#9D96FF"/></svg>
                     </div>
                     <h3>AI 수면 분석</h3>
-                    <p>마이크·가속도·자이로 센서와 Health Connect 연동 심박 데이터로 수면 단계와 패턴을 자동으로 측정하고 분석해요.</p>
+                    <p>마이크·가속도계·자이로 센서 및 Health Connect 심박 데이터를 기반으로 수면 단계(렘·얕은잠·깊은잠)와 패턴을 정확하게 측정합니다.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V5l12-2v13" stroke="#9D96FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="#9D96FF" stroke-width="1.8"/><circle cx="18" cy="16" r="3" stroke="#9D96FF" stroke-width="1.8"/></svg>
                     </div>
                     <h3>무제한 프리미엄 수면 음악</h3>
-                    <p>빗소리·파도·피아노 등 자연음과 사운드 믹스를 취향대로 조합해, 깊은 잠에 들 수 있도록 도와드려요.</p>
+                    <p>빗소리, 파도, 피아노, 바이노럴 비트 등 고품질 자연음과 사운드 믹스를 취향대로 조합하여 숙면을 유도합니다.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V10M11 19V5M18 19v-7" stroke="#9D96FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <h3>AI 수면 개선 조언 &amp; 리포트</h3>
-                    <p>어제와 오늘, 최근 수면 데이터를 비교하고 주간·월간 리포트와 AI 맞춤 개선 조언까지 받아보세요.</p>
+                    <h3>AI 맞춤 수면 리포트</h3>
+                    <p>어제와 오늘, 최근 수면 데이터를 비교하고 주간·월간 통계 리포트와 함께 AI 맞춤형 수면 개선 가이드를 받아보세요.</p>
                 </div>
             </div>
         </div>
@@ -491,8 +479,8 @@
         <div class="wrap">
             <div class="section-head">
                 <span class="kicker">Pricing</span>
-                <h2>솜니웨이브 프리미엄</h2>
-                <p>7일 무료체험으로 먼저 경험해보세요. 구독은 앱 안에서 언제든 취소할 수 있어요.</p>
+                <h2>솜니웨이브 프리미엄 요금제</h2>
+                <p>7일 무료체험으로 먼저 경험해보세요. 구독은 언제든 간편하게 해지할 수 있습니다.</p>
             </div>
             <div class="pricing-grid">
                 <div class="price-card">
@@ -501,34 +489,34 @@
                     <div class="price-note">매달 자동 결제</div>
                     <ul>
                         <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#9D96FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 무제한 프리미엄 수면 음악</li>
-                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#9D96FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> AI 수면 개선 조언</li>
-                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#9D96FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 최근 수면과 비교</li>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#9D96FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> AI 수면 개선 조언 및 리포트</li>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#9D96FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 최근 수면 데이터 비교 분석</li>
                     </ul>
-                    <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">다운로드하고 시작하기</a>
+                    <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">구글 플레이에서 시작하기</a>
                 </div>
                 <div class="price-card highlight">
                     <span class="badge">7일 무료체험</span>
                     <div class="plan-name">연간 플랜</div>
                     <div class="price">39,000원<small> / 년</small></div>
-                    <div class="price-note">월 3,250원 꼴 · 가장 많이 선택하는 플랜</div>
+                    <div class="price-note">월 3,250원 꼴 · 가장 인기 있는 플랜</div>
                     <ul>
                         <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 무제한 프리미엄 수면 음악</li>
-                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> AI 수면 개선 조언</li>
-                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 최근 수면과 비교</li>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> AI 수면 개선 조언 및 리포트</li>
+                        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 최근 수면 데이터 비교 분석</li>
                         <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#FFEAA7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 7일 무료체험, 언제든 해지 가능</li>
                     </ul>
                     <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">7일 무료체험 시작하기</a>
                 </div>
             </div>
-            <p class="pricing-footnote">가격 및 혜택은 Google Play 결제 화면에서 최종 확인되며, 운영 정책에 따라 변경될 수 있습니다.</p>
+            <p class="pricing-footnote">가격 및 혜택은 Google Play 결제 화면에서 최종 확인되며, 구독은 Google Play 스토어 계정에서 언제든지 관리 및 해지하실 수 있습니다.</p>
         </div>
     </section>
 
     <section>
         <div class="wrap">
             <div class="cta-band">
-                <h2>오늘 밤, 솜니웨이브와 함께 시작해보세요</h2>
-                <p>지금 다운로드하고 7일 무료체험으로 AI 수면 분석을 경험해보세요.</p>
+                <h2>오늘 밤부터 더 깊고 편안한 잠을 만나보세요</h2>
+                <p>지금 다운로드하고 7일 무료체험으로 AI 수면 분석과 프리미엄 수면 음악을 경험해보세요.</p>
                 <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.soundsleeper.app" target="_blank" rel="noopener">Google Play에서 다운로드</a>
             </div>
         </div>
@@ -539,73 +527,35 @@
     <div class="wrap">
         <div class="footer-top">
             <div class="footer-brand">
-                <img src="asset/icon/app_logo.svg" alt="솜니웨이브">
+                <img src="asset/icon/app_logo.svg" alt="솜니웨이브 로고">
+                <span>SomniWave</span>
             </div>
             <div class="footer-links">
-                <button type="button" data-modal="terms-modal">이용약관</button>
-                <button type="button" data-modal="privacy-modal">개인정보처리방침</button>
+                <a href="terms-and-conditions/">이용약관</a>
+                <a href="privacy-policy/">개인정보처리방침</a>
                 <a href="mailto:soundsleeper.help@gmail.com">문의하기</a>
             </div>
         </div>
         <div class="footer-meta">
-            <span>&copy; 2026 SoundSleeper. All rights reserved.</span>
-            <small>문의: soundsleeper.help@gmail.com (변경 가능)</small>
+            <span>&copy; 2026 SomniWave. All rights reserved.</span>
+            <small>고객문의: soundsleeper.help@gmail.com | 도메인: alar.my</small>
         </div>
     </div>
 </footer>
 
-<div class="modal-overlay" id="terms-modal">
-    <div class="modal-box">
-        <div class="modal-head">
-            <h3>이용약관</h3>
-            <button type="button" data-close="terms-modal" aria-label="닫기">✕</button>
-        </div>
-        <iframe src="terms/index.html" title="솜니웨이브 이용약관" loading="lazy"></iframe>
-    </div>
-</div>
-
-<div class="modal-overlay" id="privacy-modal">
-    <div class="modal-box">
-        <div class="modal-head">
-            <h3>개인정보처리방침</h3>
-            <button type="button" data-close="privacy-modal" aria-label="닫기">✕</button>
-        </div>
-        <iframe src="privacy/index.html" title="솜니웨이브 개인정보처리방침" loading="lazy"></iframe>
-    </div>
-</div>
-
 <script>
-    // 모바일 햄버거 메뉴
+    // 모바일 햄버거 메뉴 토글
     const hamburger = document.getElementById('hamburger');
     const mainNav = document.getElementById('mainNav');
     hamburger.addEventListener('click', () => mainNav.classList.toggle('open'));
     mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
 
-    // 모달 열기/닫기
-    function openModal(id) {
-        document.getElementById(id).classList.add('open');
-        document.body.style.overflow = 'hidden';
+    // URL 파라미터 처리 (예: ?r=0 등 유입 경로 트래킹 대응)
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('r');
+    if (ref !== null) {
+        console.log('Incoming referral code:', ref);
     }
-    function closeModal(id) {
-        document.getElementById(id).classList.remove('open');
-        document.body.style.overflow = '';
-    }
-    document.querySelectorAll('[data-modal]').forEach(btn => {
-        btn.addEventListener('click', () => openModal(btn.getAttribute('data-modal')));
-    });
-    document.querySelectorAll('[data-close]').forEach(btn => {
-        btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close')));
-    });
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) closeModal(overlay.id);
-        });
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.modal-overlay.open').forEach(o => closeModal(o.id));
-        }
-    });
 </script>
 
 </body>
