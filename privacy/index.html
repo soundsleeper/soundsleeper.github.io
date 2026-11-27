@@ -1,222 +1,180 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>개인정보처리방침 — 솜니웨이브 (SomniWave)</title>
-  <style>
-    :root {
-      --bg: #0b0f19;
-      --surface: #131a2a;
-      --text: #f3f5fa;
-      --muted: #a3aec4;
-      --accent: #b7a6ff;
-      --primary: #7c5cff;
-      --border: rgba(255, 255, 255, 0.1);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.75;
-    }
-    .container { max-width: 860px; margin: 0 auto; padding: 48px 20px 80px; }
-    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 0.95rem; }
-    .top-nav a { color: var(--accent); text-decoration: none; }
-    .top-nav a:hover { text-decoration: underline; }
-    h1 { font-size: 2rem; margin-bottom: 8px; }
-    .meta { color: var(--muted); font-size: 0.92rem; margin-bottom: 24px; }
-    .intro { color: var(--muted); font-size: 0.96rem; margin-bottom: 24px; }
-    .toc {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 14px; padding: 18px 22px; margin-bottom: 36px;
-      display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 0.9rem;
-    }
-    .toc a { color: var(--muted); text-decoration: none; }
-    .toc a:hover { color: var(--accent); }
-    h2 { font-size: 1.25rem; margin: 36px 0 12px; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-    p, li { color: var(--muted); font-size: 0.96rem; margin-bottom: 10px; }
-    ul { padding-left: 20px; margin-bottom: 14px; }
-    strong { color: var(--text); }
-    table {
-      width: 100%; border-collapse: collapse; margin: 16px 0 20px;
-      background: var(--surface); border-radius: 12px; overflow: hidden;
-    }
-    th, td {
-      padding: 13px 16px; text-align: left; font-size: 0.92rem;
-      border-bottom: 1px solid var(--border); vertical-align: top;
-    }
-    th { background: rgba(255, 255, 255, 0.04); color: var(--text); font-weight: 600; width: 22%; }
-    td { color: var(--muted); }
-    .delete-card {
-      background: var(--surface); border: 1px solid var(--primary);
-      border-radius: 14px; padding: 22px; margin: 16px 0;
-    }
-    .delete-btn {
-      display: inline-block; margin-top: 10px; padding: 11px 20px;
-      background: var(--primary); color: #fff; border-radius: 10px;
-      text-decoration: none; font-weight: 600; font-size: 0.92rem;
-    }
-    .delete-btn:hover { opacity: 0.92; }
-    footer {
-      margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--border);
-      color: var(--muted); font-size: 0.88rem;
-    }
-    .footer-links { display: flex; gap: 18px; margin-bottom: 14px; color: var(--text); font-weight: 500; }
-    .footer-links a { color: inherit; text-decoration: none; }
-    .footer-links a:hover { text-decoration: underline; }
-    footer p { margin-bottom: 4px; font-size: 0.88rem; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보처리방침 — 솜니웨이브 (SomniWave)</title>
+    <link rel="canonical" href="https://somniwave-official.com/privacy/">
+    <style>
+        :root {
+            --bg: #0B0C1E;
+            --surface: #151736;
+            --primary: #9D96FF;
+            --text: #F5F4FF;
+            --muted: #9aa5be;
+            --border: #3A3860;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", sans-serif;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 24px 100px;
+            word-break: keep-all;
+            background: var(--bg);
+        }
+        header { margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .back-link { color: var(--primary); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 1.8rem; color: var(--text); margin: 0 0 10px; }
+        h2 { margin-top: 44px; border-bottom: 1px solid var(--border); padding-bottom: 8px; font-size: 1.25rem; color: var(--primary); font-weight: 600; }
+        .meta { color: var(--muted); font-size: 0.95rem; }
+        nav.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 24px 0 40px; font-size: 0.92em; }
+        nav.toc a { color: var(--primary); text-decoration: none; margin-right: 14px; white-space: nowrap; display: inline-block; line-height: 1.9; }
+        nav.toc a:hover { text-decoration: underline; }
+        .table-wrap { overflow-x: auto; margin: 18px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.94em; }
+        th, td { border: 1px solid var(--border); padding: 12px; text-align: left; vertical-align: top; color: var(--muted); }
+        th { background-color: var(--surface); color: var(--text); font-weight: 600; }
+        ol, ul { padding-left: 1.5em; }
+        li { margin: 6px 0; color: var(--muted); }
+        p { margin: 12px 0; color: var(--muted); }
+        .footer-company { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 24px; font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="top-nav">
-      <a href="../index.html">← 홈으로 돌아가기</a>
-      <a href="../terms/index.html">이용약관 보기 →</a>
-    </div>
-    <h1>개인정보처리방침</h1>
-    <p class="meta">서비스명: 솜니웨이브(SomniWave) · 시행일자: 2026년 11월 27일</p>
 
-    <p class="intro">
-      솜니웨이브(이하 '회사')는 「개인정보 보호법」 및 관련 법령에 따라 솜니웨이브(SomniWave, 이하 '서비스') 이용자의 개인정보를 보호하고, 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 다음과 같이 개인정보처리방침을 수립·공개합니다.
+<header>
+    <div>
+        <h1>개인정보처리방침</h1>
+        <p class="meta">서비스명: 솜니웨이브 · 시행일자: 2026년 11월 27일</p>
+    </div>
+    <a href="../index.html" class="back-link">← 홈으로 이동하기</a>
+</header>
+
+<p>솜니웨이브(이하 ‘회사’)는 「개인정보 보호법」 및 관련 법령에 따라 솜니웨이브(SomniWave, 이하 ‘서비스’) 이용자의 개인정보를 보호하고, 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 다음과 같이 개인정보처리방침을 수립·공개합니다.</p>
+
+<nav class="toc">
+    <a href="#p1">제1조 수집 목적</a>
+    <a href="#p2">제2조 수집 항목</a>
+    <a href="#p3">제3조 기기 권한 및 센서</a>
+    <a href="#p4">제4조 보유 및 파기</a>
+    <a href="#p5">제5조 제3자 제공</a>
+    <a href="#p6">제6조 처리 위탁 및 SDK</a>
+    <a href="#p7">제7조 국외 이전</a>
+    <a href="#p8">제8조 계정 또는 데이터 삭제</a>
+    <a href="#p9">제9조 이용자 권리</a>
+    <a href="#p10">제10조 안전성 조치</a>
+    <a href="#p11">제11조 보호책임자</a>
+</nav>
+
+<h2 id="p1">제1조 (개인정보의 처리 목적)</h2>
+<p>회사는 다음의 목적을 위하여 최소한의 개인정보를 처리합니다.<br>
+1. 회원가입 및 관리: 소셜 로그인 회원 식별·인증, 게스트 익명 식별, 회원 자격 유지·관리, 부정이용 방지<br>
+2. 서비스 제공: AI 기반 수면 패턴 분석, 수면 기록·리포트, 수면 음악 및 사운드 믹스 재생, 맞춤형 수면 개선 조언 생성<br>
+3. 유료 구독 및 결제: Google Play 인앱 구독 결제 처리, 7일 무료체험 관리, 구독 상태 동기화 및 환불·청약철회 대응<br>
+4. 고객 지원: 카카오톡 채널 및 공식 이메일 문의 접수, 불만 처리, 공지사항 전달<br>
+5. 서비스 안정성: 앱 오류 분석(Crashlytics), 이용 통계 분석(Analytics), 푸시 알림(FCM) 발송</p>
+
+<h2 id="p2">제2조 (처리하는 개인정보의 항목 및 수집 방법)</h2>
+<p>① 회사는 서비스 제공을 위해 다음과 같이 개인정보를 수집합니다.</p>
+<div class="table-wrap">
+<table>
+    <thead>
+        <tr>
+            <th>구분</th>
+            <th>수집 항목</th>
+            <th>수집 목적</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>소셜 로그인</td>
+            <td>소셜 고유 식별자(UID), 이메일 주소, 프로필 정보(닉네임 등)</td>
+            <td>회원 식별, 계정 복구, 멀티디바이스 구독 동기화</td>
+        </tr>
+        <tr>
+            <td>게스트 이용</td>
+            <td>기기 내부 익명 식별자(UUID)</td>
+            <td>비회원 상태에서의 로컬 수면 기록 및 설정 유지</td>
+        </tr>
+        <tr>
+            <td>유료 구독</td>
+            <td>Google Play 구매 토큰, 상품 ID, 결제 일시, 구독 상태</td>
+            <td>프리미엄 구독 권한 인증 및 만료 관리</td>
+        </tr>
+        <tr>
+            <td>자동 수집</td>
+            <td>기기 모델명, OS 버전, 앱 버전, 푸시 토큰(FCM), 비정상 종료 로그</td>
+            <td>푸시 알림 발송, 앱 안정성 개선 및 성능 진단</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<p>② 게스트 이용자 안내: 게스트 이용자의 경우 이름, 이메일, 전화번호 등 개인식별정보(PII)를 일절 수집하지 않으며, 데이터는 클라우드가 아닌 기기 내부에만 저장됩니다.</p>
+
+<h2 id="p3">제3조 (기기 권한 및 민감 센서 데이터 처리)</h2>
+<p>① 마이크(RECORD_AUDIO): 수면 중 코골이, 잠꼬대, 호흡음 및 주변 소음 크기(dB) 분석을 위해 사용됩니다. 마이크 데이터는 온디바이스(기기 내부)에서 실시간 분석용으로만 처리되며 원음 오디오 파일은 서버로 전송되거나 저장되지 않습니다.<br>
+② 신체 활동 센서(가속도계·자이로스코프): 수면 중 뒤척임 및 수면 단계(렘·얕은잠·깊은잠) 측정을 위해 사용됩니다.<br>
+③ 알림 및 포그라운드 서비스: 취침 리마인더, 스마트 기상 알람, 밤새 수면 측정 유지를 위해 사용됩니다.</p>
+
+<h2 id="p4">제4조 (개인정보의 보유 기간 및 파기 절차·방법)</h2>
+<p>① 회사는 회원 탈퇴 시 또는 목적 달성 시 개인정보를 지체 없이 파기합니다. 다만, 관계 법령에 따라 보존해야 하는 경우 아래와 같이 일정 기간 보관합니다.<br>
+- 계약 또는 청약철회 등에 관한 기록: 5년 (전자상거래법)<br>
+- 대금결제 및 재화 공급에 관한 기록(구독 결제 내역): 5년 (전자상거래법)<br>
+- 소비자 분쟁 처리에 관한 기록: 3년 (전자상거래법)<br>
+- 웹사이트 방문 기록 (통신비밀보호법): 3개월</p>
+<p>② 파기 절차 및 방법:<br>
+- 파기 절차: 보유 기간이 경과하거나 처리 목적이 달성된 개인정보는 지체 없이 파기하며, 법령에 따라 보존해야 하는 정보는 별도의 데이터베이스(DB)로 옮겨져 내부 방침 및 기타 관련 법령에 따라 일정 기간 보관된 후 파기됩니다.<br>
+- 파기 방법: 전자적 파일 형태의 정보는 복구 및 재생이 불가능한 기술적 방법(로우레벨 포맷 및 데이터 영구 덮어쓰기)을 사용하여 삭제하며, 종이 문서는 분쇄하거나 소각하여 파기합니다.</p>
+
+<h2 id="p5">제5조 (개인정보의 제3자 제공)</h2>
+<p>회사는 원칙적으로 이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만, 법령의 규정에 의거하거나 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우는 예외로 합니다.</p>
+
+<h2 id="p6">제6조 (개인정보 처리 위탁, 관리감독 및 재위탁 제한)</h2>
+<p>① 회사는 원활한 서비스 제공을 위해 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.<br>
+- Google LLC: Firebase Auth (인증), Firestore (데이터 저장), FCM (푸시 알림), Firebase Analytics / Crashlytics (성능 분석), Google Play Billing (결제), 고객 문의 및 계정 또는 데이터 삭제 요청 접수(Google Forms)<br>
+- RevenueCat, Inc.: 인앱 구독 상태 관리 및 스토어 영수증 동기화<br>
+- 주식회사 카카오: 카카오 소셜 로그인 인증 및 1:1 고객 상담 연동</p>
+<p>② 관리·감독 및 재위탁 제한 고지: 회사는 위탁계약 체결 시 「개인정보 보호법」에 따라 위탁업무 수행목적 외 개인정보 처리금지, 기술적·관리적 보호조치, 재위탁 제한, 수탁자에 대한 관리·감독 및 손해배상 등 책임에 관한 사항을 계약서 등 문서에 명시하고, 수탁자가 개인정보를 안전하게 처리하는지 지속적으로 관리·감독합니다.</p>
+
+<h2 id="p7">제7조 (개인정보의 국외 이전 및 거부 방법)</h2>
+<p>① 회사는 글로벌 클라우드 인프라를 활용함에 따라 아래와 같이 개인정보가 국외로 이전될 수 있습니다.<br>
+- 이전받는 자: Google LLC, RevenueCat, Inc. (미국 등)<br>
+- 이전 항목: 이메일, 소셜 UID, 구매 토큰, 기기 토큰<br>
+- 이전 목적: 클라우드 인프라 운영, 인증 처리, 구독 상태 동기화</p>
+<p>② 국외 이전 거부 방법 및 제한 안내: 이용자는 앱 내 회원 탈퇴(계정 또는 데이터 삭제) 또는 고객센터 이메일을 통해 개인정보의 국외 이전을 거부할 수 있습니다. 다만, 국외 이전을 거부하시는 경우 로그인, 클라우드 수면 기록 동기화, 프리미엄 구독 복원 등 서비스의 정상적인 이용이 제한될 수 있습니다.</p>
+
+<h2 id="p8" style="scroll-margin-top: 40px;">제8조 (계정 또는 데이터 삭제 요청 #account-deletion)</h2>
+<p>① 이용자는 앱 내 [설정 > 계정 관리 > 회원 탈퇴] 경로를 통해 언제든지 즉시 계정과 데이터를 삭제할 수 있습니다.<br>
+② 앱을 삭제하였거나 앱에 접근할 수 없는 사용자는 아래 링크를 통해 구글 폼으로 삭제 요청하기를 진행하실 수 있습니다.<br>
+👉 <a href="https://forms.gle/QNq6VUBtYY4jELqK7" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: underline;">[솜니웨이브 계정 또는 데이터 삭제 요청 구글 폼 바로가기]</a><br>
+<small style="color: var(--muted); display: block; margin-top: 6px;">※ 버튼이 열리지 않을 경우 contact@somniwave-official.com로 메일을 보내주시면 동일하게 처리됩니다.</small><br>
+③ 삭제 및 보관 데이터 명확화:<br>
+- 삭제되는 데이터: 계정 탈퇴 시 소셜 고유 식별자(UID), 이메일 주소, 닉네임, 모든 클라우드 수면 기록, AI 수면 리포트 및 통계 데이터는 지체 없이 영구 파기됩니다.<br>
+- 추가 보관 데이터: 다만, 전자상거래 등에서의 소비자보호에 관한 법률 등 관련 법령에 따라 대금결제 및 재화 공급에 관한 기록(구독 결제 내역)은 5년간 안전하게 분리 보관된 후 법정 기한 도래 시 파기됩니다.</p>
+
+<h2 id="p9">제9조 (이용자의 권리와 행사 방법)</h2>
+<p>이용자는 언제든지 자신의 개인정보를 열람, 정정, 삭제 또는 처리정지를 요구할 수 있으며, 앱 내 메뉴 또는 고객센터 이메일을 통해 행사할 수 있습니다.</p>
+
+<h2 id="p10">제10조 (안전성 확보 조치)</h2>
+<p>회사는 개인정보 보호를 위해 HTTPS/TLS 암호화 전송, 비밀번호 미저장(OAuth 기반), 접근 권한 최소화 등 기술적·관리적 안전조치를 취하고 있습니다.</p>
+
+<h2 id="p11">제11조 (개인정보 보호책임자)</h2>
+<p>개인정보 보호책임자: 김민수 (대표)<br>
+공식 이메일: contact@somniwave-official.com<br>
+고객센터 연락처: 010-2611-3293</p>
+
+<div class="footer-company">
+    <p style="margin: 0;">
+        상호명: 솜니웨이브 | 대표자: 김민수 | 사업자등록번호: 194-03-03720<br>
+        통신판매업 신고: 신고 진행 중 (발급 후 즉시 기재 예정)<br>
+        사업장 주소: 부산광역시 동래구 명장로 149, 3층 0274호(안락동)<br>
+        대표전화(사업자 연락처): 010-2611-3293 (※ 고객 상담은 카카오톡 및 이메일로만 진행)<br>
+        공식 이메일: contact@somniwave-official.com
     </p>
+</div>
 
-    <nav class="toc">
-      <a href="#p1">제1조 수집 목적</a>
-      <a href="#p2">제2조 수집 항목</a>
-      <a href="#p3">제3조 기기 권한 및 센서</a>
-      <a href="#p4">제4조 보유 및 이용 기간</a>
-      <a href="#p5">제5조 제3자 제공</a>
-      <a href="#p6">제6조 처리 위탁 및 SDK</a>
-      <a href="#p7">제7조 국외 이전</a>
-      <a href="#account-deletion">제8조 계정 및 데이터 삭제</a>
-      <a href="#p9">제9조 이용자 권리</a>
-      <a href="#p10">제10조 안전성 확보 조치</a>
-      <a href="#p11">제11조 보호책임자</a>
-      <a href="#p12">제12조 만 14세 미만 아동</a>
-    </nav>
-
-    <h2 id="p1">제1조 (개인정보의 처리 목적)</h2>
-    <p>회사는 다음의 목적을 위하여 최소한의 개인정보를 처리합니다.</p>
-    <ul>
-      <li><strong>회원가입 및 관리:</strong> 소셜 로그인 회원 식별·인증, 게스트 익명 식별, 회원 자격 유지·관리, 부정이용 방지</li>
-      <li><strong>서비스 제공:</strong> AI 기반 수면 패턴 분석, 수면 기록·리포트 동기화, 수면 음악 및 사운드 믹스 재생, 맞춤형 수면 개선 조언 생성</li>
-      <li><strong>유료 구독 및 결제:</strong> Google Play 인앱 구독 결제 처리, 7일 무료체험 관리, 구독 상태 동기화 및 환불·청약철회 대응</li>
-      <li><strong>고객 지원:</strong> 카카오톡 채널 및 공식 이메일 문의 접수, 불만 처리, 공지사항 전달</li>
-      <li><strong>서비스 안정성:</strong> 앱 오류 분석(Crashlytics), 이용 통계 분석(Analytics), 푸시 알림(FCM) 발송</li>
-    </ul>
-
-    <h2 id="p2">제2조 (처리하는 개인정보의 항목 및 수집 방법)</h2>
-    <p>① 회사는 서비스 제공을 위해 다음과 같이 개인정보를 수집합니다.</p>
-    <table>
-      <thead>
-        <tr>
-          <th>구분</th>
-          <th>수집 항목</th>
-          <th>수집 목적</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>소셜 로그인</th>
-          <td>소셜 고유 식별자(UID), 이메일 주소, 프로필 정보(닉네임 등)</td>
-          <td>회원 식별, 계정 복구, 멀티디바이스 구독 동기화</td>
-        </tr>
-        <tr>
-          <th>수면 분석 데이터<br>(소셜 회원)</th>
-          <td>수면 시작·종료 시각, 수면 단계 비율, 수면 점수, 주변 소음(dB) 통계 수치, AI 수면 리포트 결과</td>
-          <td>수면 기록 클라우드 백업, 주간·월간 통계 및 AI 맞춤 수면 조언 제공</td>
-        </tr>
-        <tr>
-          <th>게스트 이용</th>
-          <td>기기 내부 익명 식별자(UUID)</td>
-          <td>비회원 상태에서의 로컬 수면 기록 및 설정 유지</td>
-        </tr>
-        <tr>
-          <th>유료 구독</th>
-          <td>Google Play 구매 토큰, 상품 ID, 결제 일시, 구독 상태</td>
-          <td>프리미엄 구독 권한 인증 및 만료 관리</td>
-        </tr>
-        <tr>
-          <th>자동 수집</th>
-          <td>기기 모델명, OS 버전, 앱 버전, 푸시 토큰(FCM), 비정상 종료 로그</td>
-          <td>푸시 알림 발송, 앱 안정성 개선 및 성능 진단</td>
-        </tr>
-      </tbody>
-    </table>
-    <p>② <strong>게스트 이용자 안내:</strong> 게스트 이용자의 경우 이름, 이메일, 전화번호 등 개인식별정보(PII)를 일절 수집하지 않으며, 수면 기록 데이터는 클라우드 서버가 아닌 기기 내부에만 저장됩니다.</p>
-
-    <h2 id="p3">제3조 (기기 권한 및 민감 센서 데이터 처리)</h2>
-    <p>① <strong>마이크(RECORD_AUDIO):</strong> 수면 중 코골이, 잠꼬대, 호흡음 및 주변 소음 크기(dB) 분석을 위해 사용됩니다. 마이크 데이터는 <strong>온디바이스(기기 내부)에서 실시간 분석용으로만 처리되며 원음 오디오 파일은 서버로 전송되거나 저장되지 않습니다.</strong></p>
-    <p>② <strong>신체 활동 센서(가속도계·자이로스코프):</strong> 수면 중 뒤척임 및 수면 단계(렘·얕은잠·깊은잠) 측정을 위해 사용됩니다.</p>
-    <p>③ <strong>알림 및 포그라운드 서비스:</strong> 취침 리마인더, 스마트 기상 알람, 밤새 수면 측정 유지를 위해 사용됩니다.</p>
-
-    <h2 id="p4">제4조 (개인정보의 처리 및 보유 기간)</h2>
-    <p>① 회사는 회원 탈퇴 시 또는 목적 달성 시 개인정보를 지체 없이 파기합니다. 다만, 관계 법령에 따라 보존해야 하는 경우 아래와 같이 일정 기간 보관합니다.</p>
-    <ul>
-      <li>계약 또는 청약철회 등에 관한 기록: 5년 (전자상거래 등에서의 소비자보호에 관한 법률)</li>
-      <li>대금결제 및 재화 공급에 관한 기록(구독 결제 내역): 5년 (전자상거래 등에서의 소비자보호에 관한 법률)</li>
-      <li>소비자 불만 및 분쟁 처리에 관한 기록: 3년 (전자상거래 등에서의 소비자보호에 관한 법률)</li>
-      <li>웹사이트 방문 기록: 3개월 (통신비밀보호법)</li>
-    </ul>
-
-    <h2 id="p5">제5조 (개인정보의 제3자 제공)</h2>
-    <p>회사는 원칙적으로 이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만, 법령의 규정에 의거하거나 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우는 예외로 합니다.</p>
-
-    <h2 id="p6">제6조 (개인정보 처리 위탁 및 외부 SDK)</h2>
-    <p>회사는 원활한 서비스 제공을 위해 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
-    <ul>
-      <li><strong>Google LLC:</strong> Firebase Auth (인증), Cloud Firestore (데이터 저장), FCM (푸시 알림), Firebase Analytics / Crashlytics (성능 분석), Google Play Billing (결제)</li>
-      <li><strong>RevenueCat, Inc.:</strong> 인앱 구독 상태 관리 및 스토어 영수증 동기화</li>
-      <li><strong>주식회사 카카오:</strong> 카카오 소셜 로그인 인증 및 1:1 고객 상담 연동</li>
-    </ul>
-
-    <h2 id="p7">제7조 (개인정보의 국외 이전)</h2>
-    <p>회사는 글로벌 클라우드 인프라를 활용함에 따라 아래와 같이 개인정보가 국외로 이전될 수 있습니다.</p>
-    <ul>
-      <li><strong>이전받는 자:</strong> Google LLC, RevenueCat, Inc.</li>
-      <li><strong>이전 국가:</strong> 미국 등 (글로벌 클라우드 리전)</li>
-      <li><strong>이전 항목:</strong> 이메일, 소셜 UID, 수면 분석 통계 데이터, 구매 토큰, 기기 토큰</li>
-      <li><strong>이전 목적 및 보유 기간:</strong> 클라우드 인프라 운영, 인증 처리, 구독 상태 동기화 (회원 탈퇴 또는 위탁 계약 종료 시까지)</li>
-    </ul>
-
-    <h2 id="account-deletion">제8조 (계정 삭제 및 데이터 삭제 요청)</h2>
-    <p>① 이용자는 앱 내 <strong>[설정 &gt; 계정 관리 &gt; 회원 탈퇴]</strong> 경로를 통해 언제든지 즉시 계정과 저장된 모든 개인정보를 삭제할 수 있습니다.</p>
-    <p>② 앱을 삭제하였거나 앱에 접근할 수 없는 사용자는 아래 공식 삭제 요청 링크를 통해 계정 및 데이터 삭제를 신청할 수 있으며, 접수 후 영업일 기준 3일 이내에 처리 결과를 회신합니다.</p>
-    <div class="delete-card">
-      <strong>온라인 계정 및 데이터 삭제 신청 안내</strong>
-      <p style="margin-top: 6px; margin-bottom: 4px;">가입하신 소셜 로그인 이메일 주소를 기재하여 아래 버튼으로 요청해 주시면 본인 확인 후 모든 계정을 영구 삭제합니다.</p>
-      <a class="delete-btn" href="mailto:contact@somniwave-official.com?subject=%5B%EC%86%9C%EB%8B%88%EC%9B%A8%EC%9D%B4%EB%B8%8C%5D%20%EA%B3%84%EC%A0%95%20%EB%B0%8F%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%82%AD%EC%A0%9C%20%EC%9A%94%EC%B2%AD&amp;body=%EC%82%AD%EC%A0%9C%EB%A5%BC%20%EC%9B%90%ED%95%98%EC%8B%9C%EB%8A%94%20%EA%B0%80%EC%9E%85%20%EC%9D%B4%EB%A9%94%EC%9D%BC%20%EC%A3%BC%EC%86%8C%3A%20%0A%EB%A1%9C%EA%B7%B8%EC%9D%B8%20%EB%B0%A9%EC%8B%9D(Google%20%2F%20Kakao)%3A%20%0A%0A%EC%9C%84%20%EA%B3%84%EC%A0%95%EA%B3%BC%20%EC%A0%80%EC%9E%A5%EB%90%9C%20%EC%88%98%EB%A9%B4%20%EA%B8%B0%EB%A1%9D%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98%20%EC%98%81%EA%B5%AC%20%EC%82%AD%EC%A0%9C%EB%A5%BC%20%EC%9A%94%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.">
-        이메일로 계정 및 데이터 삭제 요청하기
-      </a>
-    </div>
-    <p>③ 삭제 요청 시 법령상 보존 의무가 있는 결제·계약 기록(5년 보관)을 제외한 모든 소셜 식별자, 수면 기록, AI 리포트, 푸시 토큰은 지체 없이 복구 불가능한 방법으로 영구 파기됩니다.</p>
-
-    <h2 id="p9">제9조 (이용자의 권리와 행사 방법)</h2>
-    <p>이용자는 언제든지 자신의 개인정보를 열람, 정정, 삭제 또는 처리정지를 요구할 수 있으며, 앱 내 메뉴 또는 고객센터 이메일(<strong>contact@somniwave-official.com</strong>)을 통해 행사할 수 있습니다.</p>
-
-    <h2 id="p10">제10조 (안전성 확보 조치)</h2>
-    <p>회사는 개인정보 보호를 위해 HTTPS/TLS 암호화 전송, 비밀번호 미저장(OAuth 토큰 기반 인증), 데이터베이스 접근 권한 최소화(Firebase Security Rules 적용) 등 기술적·관리적 안전조치를 취하고 있습니다.</p>
-
-    <h2 id="p11">제11조 (개인정보 보호책임자)</h2>
-    <ul>
-      <li><strong>개인정보 보호책임자:</strong> 김민수 (대표)</li>
-      <li><strong>공식 이메일:</strong> contact@somniwave-official.com</li>
-      <li><strong>대표전화(사업자 연락처):</strong> 010-2611-3293 (※ 고객 상담은 카카오톡 및 이메일로만 진행)</li>
-    </ul>
-
-    <h2 id="p12">제12조 (만 14세 미만 아동의 개인정보 처리에 관한 사항)</h2>
-    <p>회사는 원칙적으로 만 14세 미만 아동의 회원가입 및 서비스 이용을 제한하며, 만 14세 미만 아동의 개인정보를 수집하지 않습니다. 만일 만 14세 미만 아동의 개인정보가 수집된 사실이 확인되는 경우 회사는 해당 정보를 지체 없이 파기합니다.</p>
-
-    <footer>
-      <div class="footer-links">
-        <a href="../index.html">홈</a>
-        <a href="../terms/index.html">이용약관</a>
-      </div>
-      <p><strong>상호명:</strong> 솜니웨이브(SomniWave) | <strong>대표자:</strong> 김민수 | <strong>사업자등록번호:</strong> 194-03-03720</p>
-      <p><strong>통신판매업 신고번호:</strong> 제 2026-부산동래-0000 호 <!-- TODO: 발급받은 실제 통신판매업 신고번호로 교체하세요 --></p>
-      <p><strong>사업장 주소:</strong> 부산광역시 동래구 명장로 149, 3층 0274호(안락동)</p>
-      <p><strong>대표전화(사업자 연락처):</strong> 010-2611-3293 (※ 고객 상담은 카카오톡 및 이메일로만 진행) | <strong>공식 이메일:</strong> contact@somniwave-official.com</p>
-    </footer>
-  </div>
 </body>
 </html>

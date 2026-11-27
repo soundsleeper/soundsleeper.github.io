@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>솜니웨이브 (SomniWave) — AI 수면 분석 &amp; 프리미엄 수면 음악</title>
+  <title>솜니웨이브 — AI 수면 분석 &amp; 프리미엄 수면 음악</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -14,6 +14,8 @@
       --text: #f3f5fa;
       --muted: #9aa5be;
       --border: rgba(255, 255, 255, 0.08);
+      --kakao: #fee500;
+      --kakao-text: #191919;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -35,7 +37,7 @@
       height: 68px;
     }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; }
-    .nav-links { display: flex; gap: 24px; font-size: 0.95rem; color: var(--muted); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.95rem; color: var(--muted); align-items: center; }
     .nav-links a:hover { color: var(--text); }
 
     .hero { text-align: center; padding: 80px 0 64px; }
@@ -46,20 +48,21 @@
     }
     .hero h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.25; margin-bottom: 18px; }
     .hero p { max-width: 640px; margin: 0 auto 32px; color: var(--muted); font-size: 1.05rem; }
-    .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
-      padding: 14px 26px; border-radius: 12px; font-weight: 600; font-size: 1rem;
+      padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
       transition: 0.2s;
     }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary-hover); }
     .btn-outline { border: 1px solid var(--border); background: var(--surface); color: var(--text); }
     .btn-outline:hover { background: var(--surface-light); }
+    .btn-kakao { background: var(--kakao); color: var(--kakao-text); font-weight: 700; }
+    .btn-kakao:hover { background: #fdd835; }
 
     .stats {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-      max-width: 720px; margin: 0 auto 40px;
+      max-width: 720px; margin: 0 auto 10px;
     }
     .stat-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -74,18 +77,68 @@
     .section-head h2 { font-size: 1.9rem; margin: 8px 0 12px; }
     .section-head p { color: var(--muted); }
 
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
-    .feature-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 18px; padding: 26px;
+    /* Vertical Feature List with Scroll Animation */
+    .feature-vertical-list {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      max-width: 860px;
+      margin: 0 auto;
     }
-    .feature-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
-    .feature-card p { color: var(--muted); font-size: 0.95rem; }
+    .feature-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .feature-row.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .feature-row:nth-child(even) {
+      direction: rtl;
+    }
+    .feature-row:nth-child(even) > * {
+      direction: ltr;
+    }
+    .feature-text h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--text); }
+    .feature-text p { color: var(--muted); font-size: 0.98rem; line-height: 1.7; }
+    .feature-mockup {
+      width: 100%;
+      aspect-ratio: 9/16;
+      max-height: 340px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(124, 92, 255, 0.25);
+      background: var(--surface-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .feature-mockup img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feature-mockup-placeholder {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 16px;
+    }
 
     .disclaimer-box {
-      margin-top: 36px; padding: 22px 26px; border-radius: 14px;
+      margin-top: 48px; padding: 22px 26px; border-radius: 14px;
       background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
-      font-size: 0.9rem; color: var(--muted);
+      font-size: 0.9rem; color: var(--muted); max-width: 860px; margin-left: auto; margin-right: auto;
     }
     .disclaimer-box strong { color: var(--text); display: block; margin-bottom: 6px; }
 
@@ -104,6 +157,22 @@
     .price-list li:last-child { border-bottom: none; }
     .pricing-note { text-align: center; color: var(--muted); font-size: 0.88rem; margin-top: 24px; }
 
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .faq-item h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .faq-item p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+
     footer {
       border-top: 1px solid var(--border); padding: 48px 0 60px;
       color: var(--muted); font-size: 0.88rem;
@@ -114,9 +183,11 @@
     .support-info { background: var(--surface); padding: 18px 22px; border-radius: 12px; margin-bottom: 24px; border: 1px solid var(--border); }
     .support-info p { margin-bottom: 6px; }
     .biz-info p { margin-bottom: 4px; }
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       .stats { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .feature-row { grid-template-columns: 1fr; gap: 24px; direction: ltr !important; }
+      .support-info { flex-direction: column; align-items: flex-start !important; }
     }
   </style>
 </head>
@@ -124,13 +195,13 @@
   <header>
     <div class="container nav">
       <a href="index.html" class="brand">
-        <span>🌙 솜니웨이브 (SomniWave)</span>
+        <span>🌙 솜니웨이브</span>
       </a>
       <nav class="nav-links">
         <a href="#features">핵심 기능</a>
         <a href="#pricing">요금제</a>
-        <a href="terms/index.html">이용약관</a>
-        <a href="privacy/index.html">개인정보처리방침</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://play.google.com/store/apps/details?id=com.somniwave.app" target="_blank" rel="noopener" class="btn btn-primary btn-small">Google Play</a>
       </nav>
     </div>
   </header>
@@ -141,10 +212,6 @@
         <span class="badge">🌙 AI 수면 분석 · 수면 음악 · 맞춤 리포트</span>
         <h1>오늘 밤은 솜니웨이브와 함께<br />더 깊이 잠들어요</h1>
         <p>당신의 수면 패턴을 지능적으로 분석해 드립니다. AI 수면 패턴 분석, 프리미엄 자연음 및 커스텀 사운드 믹스, 주간·월간 수면 개선 리포트까지 — 솜니웨이브 하나로 완벽한 숙면을 경험하세요.</p>
-        <div class="cta-group">
-          <a href="#download" class="btn btn-primary">Google Play에서 다운로드</a>
-          <a href="#pricing" class="btn btn-outline">요금제 보기</a>
-        </div>
         <div class="stats">
           <div class="stat-card"><strong>AI 분석</strong><span>수면 패턴 자동 측정</span></div>
           <div class="stat-card"><strong>7일 무료체험</strong><span>첫 구독 시 무료 제공</span></div>
@@ -153,6 +220,7 @@
       </div>
     </section>
 
+    <!-- Core Features (Vertical Scroll Animation Layout with Screenshot Placeholders) -->
     <section id="features">
       <div class="container">
         <div class="section-head">
@@ -161,18 +229,41 @@
           <p>복잡한 설정 없이 자는 동안 솜니웨이브가 알아서 기록하고 분석합니다.</p>
         </div>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3>AI 수면 분석 &amp; 패턴 측정</h3>
-            <p>스마트폰의 마이크(주변 소음 dB) 및 가속도 센서를 활용하여 렘·얕은잠·깊은잠 수면 단계를 지능적으로 측정하고 정확한 수면 점수를 산출합니다.</p>
+        <div class="feature-vertical-list">
+          <!-- Feature 1 -->
+          <div class="feature-row">
+            <div class="feature-text">
+              <h3>1. AI 수면 분석 &amp; 패턴 측정</h3>
+              <p>스마트폰의 마이크(주변 소음 dB) 및 가속도 센서를 활용하여 렘·얕은잠·깊은잠 수면 단계를 지능적으로 측정하고 정확한 수면 점수를 산출합니다.</p>
+            </div>
+            <div class="feature-mockup">
+              <img src="asset/image/screenshot_analysis.webp" alt="AI 수면 분석 스크린샷" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div class="feature-mockup-placeholder" style="display:none;">screenshot_analysis.webp<br>스크린샷 이미지를 넣어주세요</div>
+            </div>
           </div>
-          <div class="feature-card">
-            <h3>무제한 프리미엄 수면 음악 &amp; 믹스</h3>
-            <p>빗소리, 파도, 피아노, 바이노럴 비트 등 고품질 자연음과 사운드를 취향대로 조합하여 나만의 수면 사운드 믹스를 만들고 숙면을 유도합니다.</p>
+
+          <!-- Feature 2 -->
+          <div class="feature-row">
+            <div class="feature-text">
+              <h3>2. 무제한 프리미엄 수면 음악 &amp; 믹스</h3>
+              <p>빗소리, 파도, 피아노, 바이노럴 비트 등 고품질 자연음과 사운드를 취향대로 조합하여 나만의 수면 사운드 믹스를 만들고 숙면을 유도합니다.</p>
+            </div>
+            <div class="feature-mockup">
+              <img src="asset/image/screenshot_music.webp" alt="프리미엄 수면 음악 스크린샷" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div class="feature-mockup-placeholder" style="display:none;">screenshot_music.webp<br>스크린샷 이미지를 넣어주세요</div>
+            </div>
           </div>
-          <div class="feature-card">
-            <h3>AI 맞춤 수면 리포트 &amp; 통계</h3>
-            <p>어제와 오늘, 최근 수면 데이터를 비교하고 주간·월간 통계 리포트와 함께 AI 맞춤형 수면 개선 조언과 가이드를 받아보세요.</p>
+
+          <!-- Feature 3 -->
+          <div class="feature-row">
+            <div class="feature-text">
+              <h3>3. AI 맞춤 수면 리포트 &amp; 통계</h3>
+              <p>어제와 오늘, 최근 수면 데이터를 비교하고 주간·월간 통계 리포트와 함께 AI 맞춤형 수면 개선 조언과 가이드를 받아보세요.</p>
+            </div>
+            <div class="feature-mockup">
+              <img src="asset/image/screenshot_report.webp" alt="AI 맞춤 수면 리포트 스크린샷" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div class="feature-mockup-placeholder" style="display:none;">screenshot_report.webp<br>스크린샷 이미지를 넣어주세요</div>
+            </div>
           </div>
         </div>
 
@@ -183,12 +274,12 @@
       </div>
     </section>
 
+    <!-- Pricing Section -->
     <section id="pricing">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Pricing</span>
           <h2>솜니웨이브 프리미엄 요금제</h2>
-          <p>7일 무료체험으로 먼저 경험해보세요. 구독은 언제든 간편하게 해지할 수 있습니다.</p>
         </div>
 
         <div class="pricing-grid">
@@ -202,7 +293,7 @@
               <li>✓ 최근 수면 데이터 비교 및 상세 분석</li>
               <li>✓ 7일 무료체험 제공, 언제든 해지 가능</li>
             </ul>
-            <a href="#download" class="btn btn-outline">7일 무료체험 시작하기</a>
+            <a href="https://play.google.com/store/apps/details?id=com.somniwave.app" target="_blank" rel="noopener" class="btn btn-outline">구독 시작하기</a>
           </div>
 
           <div class="price-card featured">
@@ -215,7 +306,7 @@
               <li>✓ 최근 수면 데이터 비교 및 상세 분석</li>
               <li>✓ 7일 무료체험 제공, 언제든 해지 가능</li>
             </ul>
-            <a href="#download" class="btn btn-primary">7일 무료체험 시작하기</a>
+            <a href="https://play.google.com/store/apps/details?id=com.somniwave.app" target="_blank" rel="noopener" class="btn btn-primary">7일 무료체험 시작하기</a>
           </div>
         </div>
 
@@ -225,35 +316,85 @@
         </p>
       </div>
     </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">FAQ</span>
+          <h2>자주 묻는 질문</h2>
+          <p>솜니웨이브 이용에 대해 궁금한 점을 확인하세요.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Q. 수면 측정 시 스마트폰을 어디에 두어야 하나요?</h3>
+            <p>스마트폰을 머리맡 협탁이나 침대 위(신체에서 30cm~1층 거리)에 마이크와 상단이 위를 향하도록 두고 수면 시작 버튼을 누르시면 됩니다.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Q. 게스트 로그인과 소셜 로그인의 차이가 무엇인가요?</h3>
+            <p>게스트 로그인 시 별도의 회원가입 없이 바로 이용 가능하나 데이터가 기기 내부에만 저장됩니다. 소셜 로그인 시 클라우드 동기화와 구독 복원이 지원됩니다.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Q. 정기구독은 어떻게 해지하나요?</h3>
+            <p>Google Play 스토어 앱 실행 후 프로필 아이콘 ➔ [결제 및 정기 결제] ➔ [정기 결제] 솜니웨이브 선택 후 구독 취소를 진행하실 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer id="support">
     <div class="container">
       <div class="footer-top">
         <div class="brand">
-          <span>🌙 솜니웨이브 (SomniWave)</span>
+          <span>🌙 솜니웨이브</span>
         </div>
         <div class="footer-links">
           <a href="terms/index.html">이용약관</a>
           <a href="privacy/index.html">개인정보처리방침</a>
-          <a href="privacy/index.html#account-deletion">계정 및 데이터 삭제</a>
-          <a href="mailto:contact@somniwave-official.com">문의하기</a>
+          <a href="https://forms.gle/QNq6VUBtYY4jELqK7" target="_blank" rel="noopener">계정 또는 데이터 삭제</a>
         </div>
       </div>
 
-      <div class="support-info">
-        <p>• 서비스 이용 및 결제 문의는 <strong>카카오톡 채널(@솜니웨이브)</strong> 또는 공식 이메일(<strong>contact@somniwave-official.com</strong>)로 접수해 주시면 영업일 기준 24시간 이내에 답변드립니다.</p>
-        <p>• 원활한 상담 기록 관리와 정확한 처리를 위해 유선(전화) 상담은 운영하지 않습니다.</p>
+      <div class="support-info" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <p>• 서비스 이용 및 결제 문의는 <strong>카카오톡 채널</strong> 또는 공식 이메일(<strong>contact@somniwave-official.com</strong>)로 접수해 주시면 영업일 기준 24시간 이내에 답변드립니다.</p>
+          <p>• 원활한 상담 기록 관리와 정확한 처리를 위해 유선(전화) 상담은 운영하지 않습니다.</p>
+        </div>
+        <a href="http://pf.kakao.com/_xlHvWX" target="_blank" rel="noopener" class="btn btn-kakao" style="padding: 10px 20px; font-size: 0.9rem;">카카오톡 1:1 문의하기</a>
       </div>
 
       <div class="biz-info">
-        <p><strong>상호명:</strong> 솜니웨이브(SomniWave) | <strong>대표자:</strong> 김민수 | <strong>사업자등록번호:</strong> 194-03-03720</p>
-        <p><strong>통신판매업 신고번호:</strong> 제 2026-부산동래-0000 호 <!-- TODO: 발급받은 실제 통신판매업 신고번호로 교체하세요 --></p>
+        <p><strong>상호명:</strong> 솜니웨이브 | <strong>대표자:</strong> 김민수 | <strong>사업자등록번호:</strong> 194-03-03720</p>
+        <p><strong>통신판매업 신고:</strong> 신고 진행 중 (발급 후 즉시 기재 예정)</p>
         <p><strong>사업장 주소:</strong> 부산광역시 동래구 명장로 149, 3층 0274호(안락동)</p>
-        <p><strong>대표전화(사업자 연락처):</strong> 010-2611-3293 (※ 고객 상담은 카카오톡 및 이메일로만 진행) | <strong>공식 이메일:</strong> contact@somniwave-official.com</p>
+        <p><strong>대표전화(사업자 연락처):</strong> 010-2611-3293 (※ 고객 상담은 카카오톡 및 이메일로만 진행)</p>
+        <p><strong>공식 이메일:</strong> contact@somniwave-official.com</p>
         <p style="margin-top: 12px;">© 2026 SomniWave. All rights reserved. | 도메인: somniwave-official.com</p>
       </div>
     </div>
   </footer>
+
+  <script>
+    // 스크롤 시 핵심 기능 카드 페이드인 애니메이션 (IntersectionObserver)
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.feature-row').forEach(row => {
+      observer.observe(row);
+    });
+  </script>
 </body>
 </html>
