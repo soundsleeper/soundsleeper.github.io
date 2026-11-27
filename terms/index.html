@@ -4,158 +4,268 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이용약관 — 솜니웨이브 (SomniWave)</title>
-    <link rel="canonical" href="https://somniwave-official.com/terms/">
+    
     <style>
         :root {
-            --bg: #0B0C1E;
-            --surface: #151736;
-            --surface-elevated: #20224D;
-            --primary: #9D96FF;
-            --secondary: #FFEAA7;
-            --text: #F5F4FF;
-            --text-secondary: #B4B0D9;
-            --border: #3A3860;
+            --bg-primary: #0b0f19;
+            --bg-secondary: #131a2b;
+            --bg-card: #1a2238;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #818cf8;
+            --accent-hover: #6366f1;
+            --border: #26314d;
+            --warning-bg: rgba(245, 158, 11, 0.1);
+            --warning-border: rgba(245, 158, 11, 0.3);
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.8;
-            color: var(--text);
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 40px 24px 100px;
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
             word-break: keep-all;
-            background: var(--bg);
         }
-        header { margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 1.8rem; color: var(--text); margin: 0 0 10px; }
-        h2 { margin-top: 44px; border-bottom: 1px solid var(--border); padding-bottom: 8px; font-size: 1.25rem; color: var(--primary); }
-        .meta { color: var(--text-secondary); font-size: 0.95rem; }
-        nav.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 24px 0 40px; font-size: 0.92em; }
-        nav.toc a { color: var(--primary); text-decoration: none; margin-right: 14px; white-space: nowrap; display: inline-block; line-height: 1.9; }
-        nav.toc a:hover { text-decoration: underline; }
-        ol, ul { padding-left: 1.5em; }
-        li { margin: 6px 0; color: var(--text-secondary); }
-        li strong { color: var(--text); }
-        p { margin: 12px 0; color: var(--text-secondary); }
-        strong { color: var(--text); }
-        .footer-company { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 24px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+        header {
+            background-color: rgba(11, 15, 25, 0.9);
+            border-bottom: 1px solid var(--border);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 24px; font-size: 0.95rem; }
+        .nav-links a { color: var(--text-secondary); }
+        .nav-links a:hover { color: var(--text-primary); }
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .btn:hover { background-color: var(--accent-hover); text-decoration: none; }
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+        .btn-outline:hover { border-color: var(--accent); }
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+            margin-top: 80px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .footer-links { display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-primary); font-weight: 500; }
+        .biz-info p { margin-bottom: 6px; }
+        .notice-box {
+            background-color: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 24px 0;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+    </style>
+
+    <style>
+        .doc-header { padding: 48px 0 32px; border-bottom: 1px solid var(--border); }
+        .doc-header h1 { font-size: 2rem; margin-bottom: 8px; }
+        .doc-meta { color: var(--text-secondary); font-size: 0.95rem; }
+        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 28px 0; display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 0.9rem; }
+        .article { margin-bottom: 36px; }
+        .article h2 { font-size: 1.25rem; color: var(--accent); margin-bottom: 12px; padding-top: 12px; }
+        .article p, .article li { color: #e2e8f0; margin-bottom: 8px; font-size: 0.97rem; }
+        .article ol, .article ul { padding-left: 22px; }
     </style>
 </head>
 <body>
+    <header>
+        <div class="container nav-wrap">
+            <a href="index.html" class="logo">🌙 솜니웨이브 (SomniWave)</a>
+            <nav class="nav-links">
+                <a href="index.html">홈</a>
+                <a href="terms.html" style="color: var(--text-primary); font-weight: 600;">이용약관</a>
+                <a href="privacy.html">개인정보처리방침</a>
+            </nav>
+        </div>
+    </header>
 
-<header>
-    <div>
-        <h1>이용약관</h1>
-        <p class="meta">서비스명: 솜니웨이브(SomniWave) · 시행일자: 2026년 11월 27일</p>
-    </div>
-    <a href="../index.html" class="back-link">← 홈으로 돌아가기</a>
-</header>
+    <main class="container">
+        <div class="doc-header">
+            <p style="margin-bottom: 12px;"><a href="index.html">← 홈으로 돌아가기</a></p>
+            <h1>이용약관</h1>
+            <p class="doc-meta">서비스명: 솜니웨이브(SomniWave) · 시행일자: 2026년 11월 27일</p>
+        </div>
 
-<nav class="toc">
-    <a href="#a1">제1조 목적</a>
-    <a href="#a2">제2조 용어의 정의</a>
-    <a href="#a3">제3조 약관의 효력 및 변경</a>
-    <a href="#a4">제4조 약관 외 준칙</a>
-    <a href="#a5">제5조 서비스의 내용</a>
-    <a href="#a6">제6조 기기 권한 및 센서</a>
-    <a href="#a7">제7조 서비스 이용시간 및 중단</a>
-    <a href="#a8">제8조 소셜 로그인 및 게스트 이용</a>
-    <a href="#a9">제9조 유료 구독 및 무료 체험</a>
-    <a href="#a10">제10조 청약철회 및 환불</a>
-    <a href="#a11">제11조 의학적 면책 조항</a>
-    <a href="#a12">제12조 이용자의 의무 및 금지행위</a>
-    <a href="#a13">제13조 지식재산권</a>
-    <a href="#a14">제14조 책임의 제한 및 면책</a>
-    <a href="#a15">제15조 고객지원 및 분쟁 해결</a>
-</nav>
+        <nav class="toc">
+            <a href="#art1">제1조 목적</a>
+            <a href="#art2">제2조 용어의 정의</a>
+            <a href="#art3">제3조 약관의 효력 및 변경</a>
+            <a href="#art4">제4조 약관 외 준칙</a>
+            <a href="#art5">제5조 서비스의 내용</a>
+            <a href="#art6">제6조 기기 권한 및 센서</a>
+            <a href="#art7">제7조 서비스 이용시간 및 중단</a>
+            <a href="#art8">제8조 소셜 로그인 및 게스트 이용</a>
+            <a href="#art9">제9조 유료 구독 및 무료 체험</a>
+            <a href="#art10">제10조 청약철회 및 환불</a>
+            <a href="#art11">제11조 의학적 면책 조항</a>
+            <a href="#art12">제12조 이용자의 의무 및 금지행위</a>
+            <a href="#art13">제13조 지식재산권</a>
+            <a href="#art14">제14조 책임의 제한</a>
+            <a href="#art15">제15조 고객지원 및 분쟁 해결</a>
+        </nav>
 
-<h2 id="a1">제1조 (목적)</h2>
-<p>이 약관은 솜니웨이브(이하 “회사”)가 제공하는 모바일 애플리케이션 '솜니웨이브(SomniWave)' 및 관련 웹서비스(이하 “서비스”)의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+        <section id="art1" class="article">
+            <h2>제1조 (목적)</h2>
+            <p>이 약관은 솜니웨이브(이하 “회사”)가 제공하는 모바일 애플리케이션 '솜니웨이브(SomniWave)' 및 관련 웹서비스(이하 “서비스”)의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+        </section>
 
-<h2 id="a2">제2조 (용어의 정의)</h2>
-<p>① 이 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
-<ol>
-    <li>“서비스”란 회사가 제공하는 AI 수면 패턴 분석, 수면 기록·리포트, 수면 음악 및 사운드 믹스 재생 등 모바일 앱 솜니웨이브와 이에 부수하는 모든 서비스를 말합니다.</li>
-    <li>“이용자”란 서비스를 이용하는 회원(소셜 로그인 회원) 및 비회원(게스트 이용자)을 통칭합니다.</li>
-    <li>“소셜 회원”이란 Google, Kakao 등 외부 소셜 로그인 계정을 연동하여 회원가입을 완료하고 서비스를 이용하는 자를 말합니다.</li>
-    <li>“게스트 이용자”란 회원가입 절차 없이 기기 내부의 익명 식별자를 통해 제한된 기능을 이용하는 비회원을 말합니다.</li>
-    <li>“유료 구독”이란 Google Play 등 앱 스토어를 통해 정기적으로 요금을 결제하고 프리미엄 기능을 이용하는 계약을 말합니다.</li>
-    <li>“무료 체험”이란 정기구독 가입 전 회사가 제공하는 일정 기간의 무료 이용 혜택을 말합니다.</li>
-    <li>“콘텐츠”란 서비스에서 제공하는 수면 음악, 자연음, 음향, 텍스트, 이미지, 수면 분석 리포트 등 디지털 콘텐츠를 말합니다.</li>
-</ol>
+        <section id="art2" class="article">
+            <h2>제2조 (용어의 정의)</h2>
+            <p>① 이 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
+            <ol>
+                <li>“서비스”란 회사가 제공하는 AI 수면 패턴 분석, 수면 기록·리포트, 수면 음악 및 사운드 믹스 재생 등 모바일 앱 솜니웨이브와 이에 부수하는 모든 서비스를 말합니다.</li>
+                <li>“이용자”란 서비스를 이용하는 회원(소셜 로그인 회원) 및 비회원(게스트 이용자)을 통칭합니다.</li>
+                <li>“소셜 회원”이란 Google, Kakao 등 외부 소셜 로그인 계정을 연동하여 회원가입을 완료하고 서비스를 이용하는 자를 말합니다.</li>
+                <li>“게스트 이용자”란 회원가입 절차 없이 기기 내부의 익명 식별자를 통해 제한된 기능을 이용하는 비회원을 말합니다.</li>
+                <li>“유료 구독”이란 Google Play 등 앱 스토어를 통해 정기적으로 요금을 결제하고 프리미엄 기능을 이용하는 계약을 말합니다.</li>
+                <li>“무료 체험”이란 정기구독 가입 전 회사가 제공하는 일정 기간의 무료 이용 혜택을 말합니다.</li>
+                <li>“콘텐츠”란 서비스에서 제공하는 수면 음악, 자연음, 음향, 텍스트, 이미지, 수면 분석 리포트 등 디지털 콘텐츠를 말합니다.</li>
+            </ol>
+        </section>
 
-<h2 id="a3">제3조 (약관의 효력 및 변경)</h2>
-<p>① 이 약관은 서비스 화면에 게시하거나 기타의 방법으로 이용자에게 공지함으로써 효력이 발생합니다.</p>
-<p>② 회사는 「약관의 규제에 관한 법률」, 「전자상거래 등에서의 소비자보호에 관한 법률」 등 관계 법령을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.</p>
-<p>③ 회사가 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 서비스 초기화면이나 공지사항에 그 적용일자 7일 전부터(이용자에게 불리하거나 중대한 변경은 30일 전부터) 공지합니다.</p>
-<p>④ 회사가 전 항에 따라 개정약관을 공지하면서 이용자에게 동의 또는 거부 의사표시를 하지 않으면 승낙한 것으로 본다는 뜻을 명확하게 공지하였음에도 이용자가 명시적으로 거부 의사를 표시하지 않은 경우 이용자가 개정약관에 동의한 것으로 봅니다. 이용자가 개정약관에 동의하지 않는 경우 서비스 이용을 중단하고 회원 탈퇴(이용계약 해지)를 할 수 있습니다.</p>
+        <section id="art3" class="article">
+            <h2>제3조 (약관의 효력 및 변경)</h2>
+            <p>① 이 약관은 서비스 화면 또는 공식 웹사이트(somniwave-official.com)에 게시하거나 기타의 방법으로 이용자에게 공지함으로써 효력이 발생합니다.</p>
+            <p>② 회사는 「약관의 규제에 관한 법률」, 「전자상거래 등에서의 소비자보호에 관한 법률」 등 관계 법령을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.</p>
+            <p>③ 회사가 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 서비스 초기화면이나 공지사항에 그 적용일자 7일 전부터(이용자에게 불리하거나 중대한 변경은 30일 전부터) 공지합니다.</p>
+            <p>④ 회사가 전 항에 따라 개정약관을 공지하면서 이용자에게 동의 또는 거부 의사표시를 하지 않으면 승낙한 것으로 본다는 뜻을 명확하게 공지하였음에도 이용자가 명시적으로 거부 의사를 표시하지 않은 경우 이용자가 개정약관에 동의한 것으로 봅니다. 이용자가 개정약관에 동의하지 않는 경우 서비스 이용을 중단하고 회원 탈퇴(이용계약 해지)를 할 수 있습니다.</p>
+        </section>
 
-<h2 id="a4">제4조 (약관 외 준칙)</h2>
-<p>이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 「전자상거래 등에서의 소비자보호에 관한 법률」, 「약관의 규제에 관한 법률」, 「콘텐츠산업진흥법」, 「개인정보 보호법」 등 관계 법령 및 상관례에 따릅니다.</p>
+        <section id="art4" class="article">
+            <h2>제4조 (약관 외 준칙)</h2>
+            <p>이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 「전자상거래 등에서의 소비자보호에 관한 법률」, 「약관의 규제에 관한 법률」, 「콘텐츠산업진흥법」, 「개인정보 보호법」 등 관계 법령 및 상관례에 따릅니다.</p>
+        </section>
 
-<h2 id="a5">제5조 (서비스의 내용)</h2>
-<p>① 회사는 다음과 같은 서비스를 제공합니다.</p>
-<ol>
-    <li>AI 기반 수면 패턴 측정 및 분석 (마이크 소음 dB, 가속도 센서 활용)</li>
-    <li>어제와 오늘, 주간·월간 수면 데이터 비교 및 AI 맞춤 수면 개선 리포트</li>
-    <li>프리미엄 수면 음악, 자연음 및 사운드 믹스 재생</li>
-    <li>기타 회사가 개발하거나 제휴를 통해 제공하는 수면 웰니스 콘텐츠</li>
-</ol>
-<p>② 서비스의 일부 기능은 유료 구독(솜니웨이브 프리미엄) 형태로 제공될 수 있습니다.</p>
+        <section id="art5" class="article">
+            <h2>제5조 (서비스의 내용)</h2>
+            <p>① 회사는 다음과 같은 서비스를 제공합니다.</p>
+            <ol>
+                <li>AI 기반 수면 패턴 측정 및 분석 (마이크 소음 dB, 가속도 센서 활용)</li>
+                <li>어제와 오늘, 주간·월간 수면 데이터 비교 및 AI 맞춤 수면 개선 리포트</li>
+                <li>프리미엄 수면 음악, 자연음 및 사운드 믹스 재생</li>
+                <li>기타 회사가 개발하거나 제휴를 통해 제공하는 수면 웰니스 콘텐츠</li>
+            </ol>
+            <p>② 서비스의 일부 기능은 유료 구독(솜니웨이브 프리미엄) 형태로 제공될 수 있습니다.</p>
+        </section>
 
-<h2 id="a6">제6조 (기기 권한 및 센서 사용)</h2>
-<p>① 서비스는 수면 분석 및 음악 재생을 위해 마이크(RECORD_AUDIO), 신체 활동 센서(가속도계·자이로스코프), 알림(POST_NOTIFICATIONS) 등의 기기 권한을 요청할 수 있습니다.</p>
-<p>② 이용자는 권한 허용을 거부할 수 있으나, 필수 권한(마이크 및 센서) 거부 시 수면 측정 및 AI 분석 기능 이용이 제한될 수 있습니다.</p>
-<p>③ 마이크를 통해 수집되는 오디오 데이터는 온디바이스(기기 내부)에서 실시간으로 소음 크기(dB) 및 패턴 분석용으로만 처리되며, 원음 자체는 외부 서버로 전송되거나 저장되지 않습니다.</p>
+        <section id="art6" class="article">
+            <h2>제6조 (기기 권한 및 센서 사용)</h2>
+            <p>① 서비스는 수면 분석 및 음악 재생을 위해 마이크(RECORD_AUDIO), 신체 활동 센서(가속도계·자이로스코프), 알림(POST_NOTIFICATIONS) 등의 기기 권한을 요청할 수 있습니다.</p>
+            <p>② 이용자는 권한 허용을 거부할 수 있으나, 필수 권한(마이크 및 센서) 거부 시 수면 측정 및 AI 분석 기능 이용이 제한될 수 있습니다.</p>
+            <p>③ 마이크를 통해 수집되는 오디오 데이터는 온디바이스(기기 내부)에서 실시간으로 소음 크기(dB) 및 패턴 분석용으로만 처리되며, 원음 자체는 외부 서버로 전송되거나 저장되지 않습니다.</p>
+        </section>
 
-<h2 id="a7">제7조 (서비스 이용시간 및 중단)</h2>
-<p>① 서비스는 연중무휴, 1일 24시간 제공함을 원칙으로 합니다.</p>
-<p>② 회사는 시스템 정기점검, 서버 증설, 통신 장애, 국가비상사태, 하드웨어 고장 등 불가피한 사유가 발생한 경우 서비스의 전부 또는 일부를 일시적으로 중단할 수 있습니다. 이 경우 사전에 공지하며, 긴급한 사유가 있는 경우 사후에 공지할 수 있습니다.</p>
+        <section id="art7" class="article">
+            <h2>제7조 (서비스 이용시간 및 중단)</h2>
+            <p>① 서비스는 연중무휴, 1일 24시간 제공함을 원칙으로 합니다.</p>
+            <p>② 회사는 시스템 정기점검, 서버 증설, 통신 장애, 국가비상사태, 하드웨어 고장 등 불가피한 사유가 발생한 경우 서비스의 전부 또는 일부를 일시적으로 중단할 수 있습니다. 이 경우 사전에 공지하며, 긴급한 사유가 있는 경우 사후에 공지할 수 있습니다.</p>
+        </section>
 
-<h2 id="a8">제8조 (소셜 로그인 및 게스트 이용)</h2>
-<p>① 소셜 회원은 회사가 정한 절차에 따라 외부 소셜 계정(Google, Kakao 등)을 연동하여 가입하며, 회사는 서비스 운영에 필요한 최소한의 정보를 수집합니다.</p>
-<p>② 게스트 이용자는 별도의 회원가입 없이 기기 내부의 익명 식별자(UUID)를 기반으로 서비스를 이용할 수 있습니다.</p>
-<p>③ **게스트 이용자의 데이터 유실 면책:** 게스트 이용자의 수면 기록 및 설정 데이터는 클라우드 서버가 아닌 기기 내부에만 저장됩니다. 따라서 앱 삭제, 기기 변경, OS 초기화, 캐시·데이터 삭제 시 모든 기록이 영구적으로 유실되며 회사는 이를 복구할 책임이 없습니다.</p>
-<p>④ 구독 권한의 안정적인 유지와 데이터 백업을 위해 회사는 소셜 계정 연동(회원가입)을 강력히 권장합니다.</p>
+        <section id="art8" class="article">
+            <h2>제8조 (소셜 로그인 및 게스트 이용)</h2>
+            <p>① 소셜 회원은 회사가 정한 절차에 따라 외부 소셜 계정(Google, Kakao 등)을 연동하여 가입하며, 회사는 서비스 운영에 필요한 최소한의 정보를 수집합니다.</p>
+            <p>② 게스트 이용자는 별도의 회원가입 없이 기기 내부의 익명 식별자(UUID)를 기반으로 서비스를 이용할 수 있습니다.</p>
+            <p>③ <strong>게스트 이용자의 데이터 유실 면책:</strong> 게스트 이용자의 수면 기록 및 설정 데이터는 클라우드 서버가 아닌 기기 내부에만 저장됩니다. 따라서 앱 삭제, 기기 변경, OS 초기화, 캐시·데이터 삭제 시 모든 기록이 영구적으로 유실되며 회사는 이를 복구할 책임이 없습니다.</p>
+            <p>④ 구독 권한의 안정적인 유지와 데이터 백업을 위해 회사는 소셜 계정 연동(회원가입)을 강력히 권장합니다.</p>
+        </section>
 
-<h2 id="a9">제9조 (유료 구독 및 무료 체험)</h2>
-<p>① 유료 구독(월간 플랜, 연간 플랜)의 요금, 결제 주기 및 혜택은 앱 내 구독 화면에 명시된 바에 따릅니다.</p>
-<p>② 7일 무료 체험은 Google Play 계정당 최초 1회에 한하여 제공되며, 무료 체험 기간 종료 최소 24시간 전까지 구독을 취소하지 않으면 선택한 플랜의 정상 요금이 자동으로 청구됩니다.</p>
-<p>③ 정기 구독은 이용자가 직접 Google Play 스토어 설정에서 해지하기 전까지 매 결제 주기마다 자동으로 갱신됩니다.</p>
-<p>④ **정기구독 해지 안내:** 스마트폰에서 단순히 앱을 삭제하거나 앱 내 회원 탈퇴를 하는 것만으로는 정기구독 결제가 해지되지 않습니다. 반드시 Google Play 스토어 앱의 [프로필 > 결제 및 정기 결제 > 정기 결제]에서 구독을 취소하셔야 합니다.</p>
+        <section id="art9" class="article">
+            <h2>제9조 (유료 구독 및 무료 체험)</h2>
+            <p>① 유료 구독(월간 플랜, 연간 플랜)의 요금(VAT 포함), 결제 주기 및 혜택은 앱 내 구독 화면에 명시된 바에 따릅니다.</p>
+            <p>② 7일 무료 체험은 Google Play 계정당 최초 1회에 한하여 제공되며, 무료 체험 기간 종료 최소 24시간 전까지 구독을 취소하지 않으면 선택한 플랜의 정상 요금이 자동으로 청구됩니다.</p>
+            <p>③ 정기 구독은 이용자가 직접 Google Play 스토어 설정에서 해지하기 전까지 매 결제 주기마다 자동으로 갱신됩니다.</p>
+            <p>④ <strong>정기구독 해지 안내:</strong> 스마트폰에서 단순히 앱을 삭제하거나 앱 내 회원 탈퇴를 하는 것만으로는 정기구독 결제가 해지되지 않습니다. 반드시 Google Play 스토어 앱의 [프로필 &gt; 결제 및 정기 결제 &gt; 정기 결제]에서 구독을 취소하셔야 합니다.</p>
+            <p>⑤ <strong>구독 요금 변경 시 사전 고지 및 동의:</strong> 회사가 정기구독 요금을 인상하거나 중대하게 변경하는 경우, 변경 적용일 최소 30일 전에 이용자에게 사전 고지합니다. 이용자가 변경된 요금에 명시적으로 동의하지 않는 경우 기존 결제 주기를 끝으로 자동 갱신이 중단됩니다.</p>
+        </section>
 
-<h2 id="a10">제10조 (청약철회 및 환불)</h2>
-<p>① 인앱 결제를 통한 유료 구독의 청약철회, 결제 취소 및 환불은 원칙적으로 Google Play 스토어의 환불 정책 및 고객지원 절차에 따릅니다.</p>
-<p>② 디지털 콘텐츠의 특성상 결제 후 즉시 프리미엄 음원 이용 및 AI 리포트 조회가 개시된 경우, 관련 법령 및 스토어 정책에 따라 청약철회가 제한될 수 있습니다.</p>
+        <section id="art10" class="article">
+            <h2>제10조 (청약철회 및 환불)</h2>
+            <p>① 이용자는 「전자상거래 등에서의 소비자보호에 관한 법률」에 따라 유료 구독 결제일로부터 7일 이내에 유료 서비스(프리미엄 음원 재생, AI 상세 리포트 조회 등)를 전혀 이용하지 않은 경우에 한하여 청약철회(전액 환불)를 요청할 수 있습니다.</p>
+            <p>② 다음 각 호의 어느 하나에 해당하는 경우, 관련 법령(전자상거래법 제17조 제2항 제5호 등) 및 회사의 사전 고지에 따라 청약철회가 제한될 수 있습니다.</p>
+            <ol>
+                <li>결제 직후 즉시 프리미엄 수면 음원 재생 또는 AI 상세 리포트 제공이 개시되어 디지털 콘텐츠의 효용이 소비된 경우</li>
+                <li>7일 무료 체험 기간이 종료된 후 정상 정기결제로 전환된 경우 (단, 미사용 시 법정 기한 내 스토어 정책에 따라 심사 가능)</li>
+            </ol>
+            <p>③ Google Play 인앱 결제를 통한 모든 환불 접수 및 처리는 Google Play 스토어의 환불 시스템 및 고객지원 절차를 통해 진행됩니다.</p>
+        </section>
 
-<h2 id="a11">제11조 (의학적 면책 조항)</h2>
-<p>① 솜니웨이브는 질병의 진단, 치료, 경감, 처치 또는 예방을 목적으로 하는 의료기기가 아니며, 제공되는 수면 분석 및 리포트는 일반적인 웰니스(Wellness) 정보를 제공하기 위한 것입니다.</p>
-<p>② 본 앱의 분석 데이터나 AI 조언은 전문 의료인의 진료나 수면다원검사를 대체할 수 없으며, 불면증이나 수면무호흡증 등 수면 장애가 의심되는 경우 반드시 전문 의료기관을 방문하시기 바랍니다.</p>
-<p>③ 수면 음악이나 바이노럴 비트는 졸음을 유발할 수 있으므로 운전 중이거나 위험한 기계 조작 중에는 절대 청취하지 마십시오.</p>
+        <section id="art11" class="article">
+            <h2>제11조 (의학적 면책 조항)</h2>
+            <p>① 솜니웨이브는 질병의 진단, 치료, 경감, 처치 또는 예방을 목적으로 하는 의료기기가 아니며, 제공되는 수면 분석 및 리포트는 일반적인 웰니스(Wellness) 정보를 제공하기 위한 것입니다.</p>
+            <p>② 본 앱의 분석 데이터나 AI 조언은 전문 의료인의 진료나 수면다원검사를 대체할 수 없으며, 불면증이나 수면무호흡증 등 수면 장애가 의심되는 경우 반드시 전문 의료기관을 방문하시기 바랍니다.</p>
+            <p>③ 수면 음악이나 바이노럴 비트는 졸음을 유발할 수 있으므로 운전 중이거나 위험한 기계 조작 중에는 절대 청취하지 마십시오.</p>
+        </section>
 
-<h2 id="a12">제12조 (이용자의 의무 및 금지행위)</h2>
-<p>① 이용자는 타인의 계정 도용, 허위 정보 등록, 앱 역설계(리버스 엔지니어링), 서버 과부하 유발, 콘텐츠 무단 추출·배포 등의 행위를 해서는 안 됩니다.</p>
-<p>② 회사는 이용자가 금지행위를 위반한 경우 사전 통지 후 또는 긴급한 경우 즉시 이용계약을 해지하거나 서비스 이용을 제한할 수 있습니다.</p>
+        <section id="art12" class="article">
+            <h2>제12조 (이용자의 의무 및 금지행위)</h2>
+            <p>① 이용자는 타인의 계정 도용, 허위 정보 등록, 앱 역설계(리버스 엔지니어링), 서버 과부하 유발, 콘텐츠 무단 추출·배포 등의 행위를 해서는 안 됩니다.</p>
+            <p>② 회사는 이용자가 금지행위를 위반한 경우 사전 통지 후 또는 긴급한 경우 즉시 이용계약을 해지하거나 서비스 이용을 제한할 수 있습니다.</p>
+        </section>
 
-<h2 id="a13">제13조 (지식재산권)</h2>
-<p>서비스 내에 게재된 UI/UX 디자인, 텍스트, AI 알고리즘, 수면 음악 및 자연음 음원에 대한 지식재산권은 회사에 귀속되며, 이용자는 비상업적 개인 용도로만 제한적으로 이용할 수 있습니다.</p>
+        <section id="art13" class="article">
+            <h2>제13조 (지식재산권)</h2>
+            <p>서비스 내에 게재된 UI/UX 디자인, 텍스트, AI 알고리즘, 수면 음악 및 자연음 음원에 대한 지식재산권은 회사에 귀속되며, 이용자는 비상업적 개인 용도로만 제한적으로 이용할 수 있습니다.</p>
+        </section>
 
-<h2 id="a14">제14조 (책임의 제한)</h2>
-<p>회사는 천재지변, 통신사 장애, 이용자의 기기 배터리 방전·권한 미허용 등 회사의 귀책사유가 없는 불가피한 사유로 발생한 손해에 대하여 책임을 지지 않습니다.</p>
+        <section id="art14" class="article">
+            <h2>제14조 (책임의 제한)</h2>
+            <p>회사는 천재지변, 통신사 장애, 이용자의 기기 배터리 방전·권한 미허용 등 회사의 귀책사유가 없는 불가피한 사유로 발생한 손해에 대하여 책임을 지지 않습니다.</p>
+        </section>
 
-<h2 id="a15">제15조 (고객지원 및 분쟁 해결)</h2>
-<p>① 회사는 원활한 상담 기록 관리와 신속한 처리를 위해 **유선(전화) 상담을 운영하지 않으며**, 모든 문의는 카카오톡 채널 또는 공식 이메일(`soundsleeper.help@gmail.com`)로 접수받습니다.</p>
-<p>② 회사와 이용자 간 분쟁 발생 시 대한민국 법령을 준거법으로 하며, 민사소송법상의 관할법원에 따릅니다.</p>
+        <section id="art15" class="article">
+            <h2>제15조 (고객지원 및 분쟁 해결)</h2>
+            <p>① 회사는 원활한 상담 기록 관리와 신속한 처리를 위해 <strong>유선(전화) 상담을 운영하지 않으며</strong>, 모든 문의는 카카오톡 채널(@솜니웨이브) 또는 공식 이메일(<a href="mailto:contact@somniwave-official.com">contact@somniwave-official.com</a>)로 접수받습니다.</p>
+            <p>② 회사와 이용자 간 발생한 전자상거래 분쟁에 관한 소송은 제소 당시의 이용자 주소에 의하고, 주소가 없는 경우에는 거소를 관할하는 지방법원의 전속관할로 합니다. 다만, 제소 당시 이용자의 주소 또는 거소가 분명하지 않거나 외국 거주자인 경우에는 민사소송법상의 관할법원에 제기하며, 한국소비자원 또는 전자문서·전자거래분쟁조정위원회에 분쟁조정을 신청할 수 있습니다.</p>
+        </section>
+    </main>
 
-<div class="footer-company">
-    <p style="margin: 0;">
-        <strong>상호명:</strong> 솜니웨이브(SomniWave) | <strong>대표자:</strong> 김민수 | <strong>사업자등록번호:</strong> 194-03-03720<br>
-        <strong>사업장 주소:</strong> 부산광역시 동래구 명장로 149, 3층 0274호(안락동)<br>
-        <strong>고객센터:</strong> 010-2611-3293 | <strong>이메일:</strong> soundsleeper.help@gmail.com
-    </p>
-</div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">홈</a>
+                <a href="terms.html">이용약관</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="privacy.html#account-deletion">계정 및 데이터 삭제 요청</a>
+                <a href="mailto:contact@somniwave-official.com">이메일 문의</a>
+            </div>
+            <div class="notice-box">
+                <p>• 서비스 이용 및 결제 문의는 <strong>카카오톡 채널(@솜니웨이브)</strong> 또는 공식 이메일(<strong>contact@somniwave-official.com</strong>)로 접수해 주시면 영업일 기준 24시간 이내에 답변드립니다.</p>
+                <p>• 원활한 상담 기록 관리와 신속한 처리를 위해 유선(전화) 고객 상담은 운영하지 않습니다.</p>
+            </div>
+            <div class="biz-info">
+                <p><strong>상호명:</strong> 솜니웨이브(SomniWave) | <strong>대표자:</strong> 김민수 | <strong>사업자등록번호:</strong> 194-03-03720</p>
+                <p><strong>통신판매업 신고번호:</strong> 제 2026-부산동래-0000 호 <em>(※ 신고 완료 후 실제 번호로 수정하세요)</em></p>
+                <p><strong>사업장 주소:</strong> 부산광역시 동래구 명장로 149, 3층 0274호(안락동)</p>
+                <p><strong>대표전화(사업자 연락처):</strong> 010-2611-3293 (※ 고객 상담은 카카오톡 및 이메일로만 진행) | <strong>공식 이메일:</strong> <a href="mailto:contact@somniwave-official.com">contact@somniwave-official.com</a></p>
+                <p style="margin-top: 16px;">© 2026 SomniWave. All rights reserved. 도메인: somniwave-official.com</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
